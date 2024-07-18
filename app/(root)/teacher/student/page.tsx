@@ -1,11 +1,11 @@
 import React from "react";
 
-const Admin = () => {
+const page = () => {
   return (
     <main className="p-4">
-      <p>Teacher Dashboard Page</p>
+      <p>Teacher's Student Page</p>
     </main>
   );
 };
 
-export default Admin;
+export default page;
