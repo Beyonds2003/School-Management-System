@@ -16,7 +16,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full h-24 flex items-center justify-between px-4 shadow-gray-400 shadow-sm">
+    <nav className="w-full h-24 flex items-center justify-between px-4 shadow-gray-300 shadow-sm">
       <div className="font-semibold text-3xl">{title()} Dashboard</div>
       <div className="flex flex-row gap-5 items-center">
         <button>
