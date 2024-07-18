@@ -12,39 +12,50 @@ import { LuPenSquare } from "react-icons/lu";
 export interface MenuItemType {
   name: string;
   icon: ReactNode;
-  link: string;
+  teacher: {
+    link: string;
+  } | null;
+  student: {
+    link: string;
+  } | null;
 }
 
 export const menu_items: MenuItemType[] = [
   {
     name: "Dashboard",
     icon: <RxDashboard size={20} />,
-    link: "/teacher",
+    teacher: { link: "/teacher" },
+    student: { link: "/student" },
   },
   {
     name: "Student",
     icon: <BsFillPeopleFill size={20} />,
-    link: "/teacher/student",
+    teacher: { link: "/teacher/student" },
+    student: null,
   },
   {
     name: "Teacher",
     icon: <PiStudent size={25} />,
-    link: "/teacher/teacher",
+    teacher: { link: "/teacher/teacher" },
+    student: null,
   },
   {
     name: "Timetable",
     icon: <BsTable size={20} />,
-    link: "/teacher/timetable",
+    teacher: { link: "/teacher/timetable" },
+    student: { link: "/student/timetable" },
   },
   {
     name: "Exam",
     icon: <LuPenSquare size={20} />,
-    link: "/teacher/exam",
+    teacher: { link: "/teacher/exam" },
+    student: { link: "/student/exam" },
   },
   {
     name: "Result",
     icon: <SlBookOpen size={20} />,
-    link: "/teacher/result",
+    teacher: { link: "/teacher/result" },
+    student: { link: "/student/result" },
   },
 ];
 
@@ -52,16 +63,19 @@ export const account_menu_items: MenuItemType[] = [
   {
     name: "Help and support",
     icon: <BiMessageRoundedError size={25} />,
-    link: "",
+    teacher: null,
+    student: null,
   },
   {
     name: "Profile",
     icon: <CgProfile size={23} />,
-    link: "",
+    teacher: { link: "/teacher/profile" },
+    student: { link: "/student/profile" },
   },
   {
     name: "Logout",
     icon: <BiLogOut size={25} />,
-    link: "",
+    teacher: { link: "/teacher/logout" },
+    student: { link: "/student/logout" },
   },
 ];

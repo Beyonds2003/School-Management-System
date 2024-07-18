@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} flex flex-row`}>
-        <Menu role="teacher" />
+        <Menu role="student" />
         <div className="h-full ml-[300px]">
           <Navbar />
           {children}

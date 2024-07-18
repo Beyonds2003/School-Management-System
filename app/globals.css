@@ -3,6 +3,32 @@
 @tailwind utilities;
 
 @layer base {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  .divider {
+    @apply bg-white w-full h-[1px];
+  }
+
+  .menu-item-container {
+    @apply flex flex-row items-center gap-5 px-5 py-4 cursor-pointer my-2 hover:bg-white hover:bg-opacity-10 rounded-lg;
+  }
+}
+
+@layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -56,31 +82,5 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-  }
-}
-
-@layer base {
-  /* Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  .divider {
-    @apply bg-white w-full h-[1px];
-  }
-
-  .menu-item-container {
-    @apply flex flex-row items-center gap-5 px-5 py-4 cursor-pointer my-2 hover:bg-white hover:bg-opacity-10 rounded-lg;
   }
 }
