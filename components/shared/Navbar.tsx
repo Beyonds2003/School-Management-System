@@ -8,7 +8,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   const title = () => {
-    if (pathname === "/teacher") {
+    if (pathname.startsWith("/teacher")) {
       return "Teacher";
     } else {
       return "Student";
@@ -16,8 +16,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full h-24 flex items-center justify-between px-4 shadow-gray-300 shadow-sm">
-      <div className="font-semibold text-3xl">{title()} Dashboard</div>
+    <nav className=" px-4  bg-white shadow-gray-300 shadow-sm rounded-lg w-full h-24 flex items-center justify-between">
+      <div className="font-semibold text-3xl">{title()} Role</div>
       <div className="flex flex-row gap-5 items-center">
         <button>
           <IoMdNotificationsOutline size={30} />
