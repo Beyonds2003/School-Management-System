@@ -6,6 +6,7 @@ import { PiStudent } from "react-icons/pi";
 import { MdAccessTime } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
 import EventCard from "@/components/ui/EventCard";
+import TeacherTimelineTable from "@/components/ui/TeacherTimelineTable";
 
 const Admin = () => {
   const totalCardItems = [
@@ -46,7 +47,9 @@ const Admin = () => {
             ))}
           </div>
           <p className="mt-6 text-xl font-semibold">Today's Timeline</p>
+          <TeacherTimelineTable />
         </section>
+
         <section className="w-[26%] h-full">
           <div className="w-full flex flex-col  items-center">
             <EventCalander />
