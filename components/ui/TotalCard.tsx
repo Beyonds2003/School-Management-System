@@ -1,9 +1,20 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-const TotalCard = () => {
+type Props = {
+  title: string;
+  value: number;
+  icon: ReactNode;
+  bgColor: string;
+};
+
+const TotalCard = ({ title, value, icon, bgColor }: Props) => {
   return (
-    <article>
-      <h1>Total Card</h1>
+    <article className="p-6 shadow-gray-500 shadow-sm rounded-lg">
+      <div className={`${bgColor} w-fit p-3 rounded-lg`}>{icon}</div>
+      <div className="flex flex-row items-end justify-between mt-3">
+        <p className="text-base font">{title}</p>
+        <p className="text-2xl font-semibold">{value}</p>
+      </div>
     </article>
   );
 };
