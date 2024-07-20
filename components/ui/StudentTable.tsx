@@ -12,7 +12,7 @@ const StudentTable = () => {
     },
     {
       photo: "",
-      name: "Naruto",
+      name: "Naruto Uzumaki",
       year: 4,
       major: "It",
       term: "First",
