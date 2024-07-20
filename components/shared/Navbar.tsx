@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <nav className=" px-4  bg-white shadow-gray-300 shadow-sm rounded-lg w-full h-24 flex items-center justify-between">
-      <div className="font-semibold text-3xl">{title()} Role</div>
+      <div className="font-bold text-3xl">{title()} Role</div>
       <div className="flex flex-row gap-5 items-center">
         <button>
           <IoMdNotificationsOutline size={30} />
@@ -31,7 +31,7 @@ const Navbar = () => {
             src="https://image.petmd.com/files/styles/978x550/public/2023-09/how-smart-are-cats.jpg"
             width={60}
             height={60}
-            className="rounded-full h-12 w-12 overflow-hidden object-cover"
+            className="rounded-full h-10 w-10 overflow-hidden object-cover"
             alt="profile image"
           />
         </div>

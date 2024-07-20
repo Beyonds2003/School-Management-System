@@ -9,7 +9,7 @@ type Props = {
 
 const TotalCard = ({ title, value, icon, bgColor }: Props) => {
   return (
-    <article className="p-6 shadow-gray-500 shadow-sm rounded-lg max-w-[280px]">
+    <article className="p-6 bg-white shadow-gray-500 shadow-sm rounded-lg max-w-[280px]">
       <div className={`${bgColor} w-fit p-3 rounded-lg`}>{icon}</div>
       <div className="flex flex-row items-end justify-between mt-3">
         <p className="text-base font">{title}</p>

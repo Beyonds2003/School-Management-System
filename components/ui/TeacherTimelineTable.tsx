@@ -40,7 +40,7 @@ const TeacherTimelineTable = () => {
       <table className="w-full" border={1}>
         <tbody>
           <tr className="bg-blue-50">
-            <th className="table-head">No</th>
+            <th className="table-head">S/N</th>
             <th className="table-head">Major</th>
             <th className="table-head">Time</th>
             <th className="table-head">Room No</th>

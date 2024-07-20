@@ -31,11 +31,12 @@ const Admin = () => {
   ];
 
   return (
-    <main className="p-6">
+    <main className="p-6 bg-gray-100">
       <h2 className="text-xl font-semibold">Overview</h2>
       <div className=" flex flex-row">
         <section className=" w-[74%] h-full pr-5">
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  gap-6">
+          {/* Total Card */}
+          <article className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  gap-6">
             {totalCardItems.map((item, index) => (
               <TotalCard
                 key={index}
@@ -45,16 +46,23 @@ const Admin = () => {
                 bgColor={item.bgColor}
               />
             ))}
-          </div>
-          <p className="mt-6 text-xl font-semibold">Today's Timeline</p>
-          <TeacherTimelineTable />
+          </article>
+
+          {/* Timeline Table */}
+          <article className="mt-6 p-6 bg-white shadow-gray-500 shadow-sm rounded-lg">
+            <p className=" text-xl font-semibold">Today's Timeline</p>
+            <TeacherTimelineTable />
+          </article>
         </section>
 
         <section className="w-[26%] h-full">
-          <div className="w-full flex flex-col  items-center">
+          {/* Event Calander */}
+          <article className="w-full flex flex-col  items-center">
             <EventCalander />
-          </div>
-          <div className="mt-4 p-4 shadow-gray-500 shadow-sm rounded-lg">
+          </article>
+
+          {/* Event Card */}
+          <article className="mt-4 p-4 bg-white shadow-gray-500 shadow-sm rounded-lg">
             <div className="flex flex-row justify-between items-center">
               <h2 className="text-lg font-semibold">Upcoming Events</h2>
               <button className="bg-blue-300 p-2 rounded-lg">
@@ -73,7 +81,7 @@ const Admin = () => {
                 time={"2:00 - 4:00 PM"}
               />
             </div>
-          </div>
+          </article>
         </section>
       </div>
     </main>
