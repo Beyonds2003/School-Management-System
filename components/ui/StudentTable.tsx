@@ -11,7 +11,8 @@ const StudentTable = () => {
       term: "Second",
     },
     {
-      photo: "",
+      photo:
+        "https://wallpapers.com/images/hd/naruto-profile-pictures-sa1tekghfajrr928.jpg",
       name: "Naruto Uzumaki",
       year: 4,
       major: "It",

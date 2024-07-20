@@ -1,3 +1,4 @@
+import { getTextColorBasedOnBackground, stringToColor } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
 
@@ -11,13 +12,22 @@ type Props = {
 };
 
 const StudentTableRow = ({ num, photo, name, year, major, term }: Props) => {
+  const avatarColor = stringToColor(name);
+  const avatarTextColor = getTextColorBasedOnBackground(avatarColor);
+
   return (
     <tr>
       <td className="table-des">{num}.</td>
       <td className="table-des  ">
         {photo === "" ? (
-          <div className="bg-blue-200 rounded-full w-10 h-10 flex justify-center items-center">
-            <p className="text-base">
+          <div
+            className={`rounded-full w-10 h-10 flex justify-center items-center`}
+            style={{ backgroundColor: avatarColor }}
+          >
+            <p
+              className="text-base font-semibold"
+              style={{ color: avatarTextColor }}
+            >
               {name.split(" ").length > 1
                 ? name.split(" ")[0][0] + name.split(" ")[1][0]
                 : name[0]}
