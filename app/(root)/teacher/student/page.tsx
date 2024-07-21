@@ -9,7 +9,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
 import StudentTable from "@/components/ui/StudentTable";
+import Link from "next/link";
 
 const page = () => {
   return (
@@ -73,10 +75,13 @@ const page = () => {
           />
         </div>
         <div className="flex flex-row items-center gap-4">
-          <button className="max-w-[200px] flex flex-row items-center gap-2 border-primary border-[3px] text-primary font-semibold p-3 rounded-md">
+          <Link
+            href="/teacher/student/create"
+            className="max-w-[200px] flex flex-row items-center gap-2 border-primary border-[3px] text-primary font-semibold p-3 rounded-md"
+          >
             <FaPlus size={20} />
             Create Student
-          </button>
+          </Link>
           <button className="max-w-[200px] px-4 flex flex-row items-center gap-3 bg-primary text-white font-semibold p-[13px] rounded-md">
             <FiDownload size={24} />
             Download

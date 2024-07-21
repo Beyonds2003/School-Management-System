@@ -25,12 +25,12 @@ const StudentTableRow = ({
   const avatarTextColor = getTextColorBasedOnBackground(avatarColor);
 
   return (
-    <tr>
+    <tr className="">
       <td className="table-des">{num}.</td>
       <td className="table-des  ">
         {photo === "" ? (
           <div
-            className={`rounded-full w-12 h-12 flex justify-center items-center`}
+            className={`rounded-full w-10 h-10 flex justify-center items-center`}
             style={{ backgroundColor: avatarColor }}
           >
             <p
@@ -47,12 +47,12 @@ const StudentTableRow = ({
             src={photo}
             width={60}
             height={60}
-            className="rounded-full object-cover h-12 w-12"
+            className="rounded-full object-cover h-10 w-10"
             alt="student profile image"
           />
         )}
       </td>
-      <td className="table-des">{name}</td>
+      <td className="table-des cursor-pointer hover:text-primary">{name}</td>
       <td className="table-des">{year} Year</td>
       <td className="table-des">{major}</td>
       <td className="table-des">{term} Term</td>

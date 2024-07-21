@@ -33,6 +33,7 @@ const TeacherTimelineTableRow = ({
 
   const handleValueChange = (value: string) => {
     setCurrentStatus(value);
+    setActive(0);
   };
 
   return (
@@ -40,7 +41,7 @@ const TeacherTimelineTableRow = ({
       onClick={() => {
         active === num ? setActive(0) : setActive(num);
       }}
-      className={`cursor-pointer transition-all ${active === num ? "bg-white shadow-custom shadow-gray-300 " : ""}`}
+      className={`cursor-pointer transition-all ${active === num ? "bg-white shadow-custom shadow-gray-200 " : ""}`}
     >
       <td className="table-des">{num}.</td>
       <td className="table-des">{major}</td>
