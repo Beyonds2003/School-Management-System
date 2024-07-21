@@ -54,11 +54,11 @@ const page = () => {
         </Select>
         <Select>
           <SelectTrigger className=" h-[50px] focus:ring-0 ring-0 shadow-sm shadow-gray-400 ">
-            <SelectValue placeholder="Order" />
+            <SelectValue placeholder="Gender" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="asc">Asc</SelectItem>
-            <SelectItem value="desc">Desc</SelectItem>
+            <SelectItem value="asc">Male</SelectItem>
+            <SelectItem value="desc">Female</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -78,7 +78,7 @@ const page = () => {
             Create Student
           </button>
           <button className="max-w-[200px] px-4 flex flex-row items-center gap-3 bg-primary text-white font-semibold p-[13px] rounded-md">
-            <CiEdit size={20} />
+            <CiEdit size={24} />
             Edit Student
           </button>
         </div>

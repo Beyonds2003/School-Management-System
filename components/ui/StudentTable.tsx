@@ -9,6 +9,7 @@ const StudentTable = () => {
       year: 6,
       major: "It",
       term: "Second",
+      gender: "Male",
     },
     {
       photo:
@@ -17,6 +18,7 @@ const StudentTable = () => {
       year: 4,
       major: "It",
       term: "First",
+      gender: "Male",
     },
     {
       photo: "",
@@ -24,6 +26,7 @@ const StudentTable = () => {
       year: 4,
       major: "It",
       term: "First",
+      gender: "Male",
     },
     {
       photo: "",
@@ -31,13 +34,15 @@ const StudentTable = () => {
       year: 4,
       major: "Ep",
       term: "Second",
+      gender: "Female",
     },
     {
       photo: "",
-      name: "Chou",
+      name: "Hinata",
       year: 4,
       major: "Mc",
       term: "First",
+      gender: "Female",
     },
     {
       photo: "",
@@ -45,6 +50,7 @@ const StudentTable = () => {
       year: 6,
       major: "It",
       term: "First",
+      gender: "Male",
     },
   ];
 
@@ -59,6 +65,7 @@ const StudentTable = () => {
             <th className="table-head">Year</th>
             <th className="table-head">Major</th>
             <th className="table-head">Term</th>
+            <th className="table-head">Gender</th>
           </tr>
           {data.map((item, index) => (
             <StudentTableRow
@@ -69,6 +76,7 @@ const StudentTable = () => {
               year={item.year}
               major={item.major}
               term={item.term}
+              gender={item.gender}
             />
           ))}
         </tbody>

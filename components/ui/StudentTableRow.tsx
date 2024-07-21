@@ -9,9 +9,18 @@ type Props = {
   year: number;
   major: string;
   term: string;
+  gender: string;
 };
 
-const StudentTableRow = ({ num, photo, name, year, major, term }: Props) => {
+const StudentTableRow = ({
+  num,
+  photo,
+  name,
+  year,
+  major,
+  term,
+  gender,
+}: Props) => {
   const avatarColor = stringToColor(name);
   const avatarTextColor = getTextColorBasedOnBackground(avatarColor);
 
@@ -47,6 +56,7 @@ const StudentTableRow = ({ num, photo, name, year, major, term }: Props) => {
       <td className="table-des">{year} Year</td>
       <td className="table-des">{major}</td>
       <td className="table-des">{term} Term</td>
+      <td className="table-des">{gender}</td>
     </tr>
   );
 };
