@@ -1,7 +1,9 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import TeacherTimelineTableRow from "./TeacherTimelineTableRow";
 
 const TeacherTimelineTable = () => {
+  const [active, setActive] = useState<number>(0);
   const data = [
     {
       major: "English",
@@ -61,6 +63,8 @@ const TeacherTimelineTable = () => {
               room={item.room}
               year={item.year}
               status={item.status}
+              active={active}
+              setActive={setActive}
             />
           ))}
         </tbody>

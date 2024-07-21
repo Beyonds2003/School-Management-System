@@ -1,4 +1,12 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type Props = {
   num: number;
@@ -7,6 +15,8 @@ type Props = {
   room: string;
   year: string;
   status: string;
+  active: number;
+  setActive: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const TeacherTimelineTableRow = ({
@@ -16,15 +26,42 @@ const TeacherTimelineTableRow = ({
   room,
   year,
   status,
+  active,
+  setActive,
 }: Props) => {
+  const [currentStatus, setCurrentStatus] = useState(status);
+
+  const handleValueChange = (value: string) => {
+    setCurrentStatus(value);
+  };
+
   return (
-    <tr>
+    <tr
+      onClick={() => {
+        active === num ? setActive(0) : setActive(num);
+      }}
+      className={`cursor-pointer transition-all ${active === num ? "bg-white shadow-custom shadow-gray-300 " : ""}`}
+    >
       <td className="table-des">{num}.</td>
       <td className="table-des">{major}</td>
       <td className="table-des">{time}</td>
       <td className="table-des">{room}</td>
       <td className="table-des">{year}</td>
-      <td className="table-des">{status}</td>
+      <td className="table-des min-w-[153px]">
+        {active === num ? (
+          <Select onValueChange={handleValueChange}>
+            <SelectTrigger className="w-[120px] focus:ring-0 text-black ring-0  ">
+              <SelectValue placeholder={currentStatus} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Present">Present</SelectItem>
+              <SelectItem value="Absent">Absent</SelectItem>
+            </SelectContent>
+          </Select>
+        ) : (
+          <p>{currentStatus}</p>
+        )}
+      </td>
     </tr>
   );
 };
