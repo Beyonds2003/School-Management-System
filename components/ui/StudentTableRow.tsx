@@ -30,7 +30,7 @@ const StudentTableRow = ({
       <td className="table-des  ">
         {photo === "" ? (
           <div
-            className={`rounded-full w-10 h-10 flex justify-center items-center`}
+            className={`rounded-full w-12 h-12 flex justify-center items-center`}
             style={{ backgroundColor: avatarColor }}
           >
             <p
@@ -47,7 +47,7 @@ const StudentTableRow = ({
             src={photo}
             width={60}
             height={60}
-            className="rounded-full object-cover h-10 w-10"
+            className="rounded-full object-cover h-12 w-12"
             alt="student profile image"
           />
         )}

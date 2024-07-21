@@ -71,12 +71,12 @@ const Admin = () => {
             </div>
             <div className="mt-4 flex flex-col gap-3">
               <EventCard
-                title={"First Term Examination"}
+                title={"Water Festival"}
                 date={"11 of October 2024"}
                 time={"2:00 - 4:00 PM"}
               />
               <EventCard
-                title={"Second Term Examination"}
+                title={"GSI Speaking"}
                 date={"23 of January 2025"}
                 time={"2:00 - 4:00 PM"}
               />

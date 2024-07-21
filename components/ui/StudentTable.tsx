@@ -14,7 +14,7 @@ const StudentTable = () => {
     {
       photo:
         "https://wallpapers.com/images/hd/naruto-profile-pictures-sa1tekghfajrr928.jpg",
-      name: "Naruto Uzumaki",
+      name: "Naruto",
       year: 4,
       major: "It",
       term: "First",
@@ -22,7 +22,7 @@ const StudentTable = () => {
     },
     {
       photo: "",
-      name: "Sasuke",
+      name: "Sasuke Uchiha",
       year: 4,
       major: "It",
       term: "First",

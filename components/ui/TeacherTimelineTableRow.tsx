@@ -6,9 +6,17 @@ type Props = {
   time: string;
   room: string;
   year: string;
+  status: string;
 };
 
-const TeacherTimelineTableRow = ({ num, major, time, room, year }: Props) => {
+const TeacherTimelineTableRow = ({
+  num,
+  major,
+  time,
+  room,
+  year,
+  status,
+}: Props) => {
   return (
     <tr>
       <td className="table-des">{num}.</td>
@@ -16,6 +24,7 @@ const TeacherTimelineTableRow = ({ num, major, time, room, year }: Props) => {
       <td className="table-des">{time}</td>
       <td className="table-des">{room}</td>
       <td className="table-des">{year}</td>
+      <td className="table-des">{status}</td>
     </tr>
   );
 };

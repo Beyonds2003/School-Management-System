@@ -6,32 +6,37 @@ const TeacherTimelineTable = () => {
     {
       major: "English",
       time: "9:00 AM - 10:00 AM",
-      room: "Room 1",
+      room: "313 (A)",
       year: "1 Year",
+      status: "Present",
     },
     {
       major: "English",
       time: "11:00 AM - 12:00 AM",
-      room: "Room 2",
+      room: "313 (B)",
       year: "2 Year",
+      status: "Absent",
     },
     {
       major: "English",
       time: "1:00 PM - 2:00 PM",
-      room: "Room 3",
+      room: "313 (C)",
       year: "3 Year",
+      status: "Absent",
     },
     {
       major: "English",
       time: "2:00 PM - 3:00 PM",
-      room: "Room 4",
+      room: "313 (A)",
       year: "4 Year",
+      status: "Present",
     },
     {
       major: "English",
       time: "3:00 PM - 4:00 PM",
-      room: "Room 5",
+      room: "313 (B)",
       year: "2 Year",
+      status: "Present",
     },
   ];
 
@@ -45,6 +50,7 @@ const TeacherTimelineTable = () => {
             <th className="table-head">Time</th>
             <th className="table-head">Room No</th>
             <th className="table-head">Year</th>
+            <th className="table-head">Status</th>
           </tr>
           {data.map((item, index) => (
             <TeacherTimelineTableRow
@@ -54,6 +60,7 @@ const TeacherTimelineTable = () => {
               time={item.time}
               room={item.room}
               year={item.year}
+              status={item.status}
             />
           ))}
         </tbody>

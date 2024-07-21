@@ -1,7 +1,7 @@
 import React from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa6";
-import { CiEdit } from "react-icons/ci";
+import { FiDownload } from "react-icons/fi";
 import {
   Select,
   SelectContent,
@@ -78,8 +78,8 @@ const page = () => {
             Create Student
           </button>
           <button className="max-w-[200px] px-4 flex flex-row items-center gap-3 bg-primary text-white font-semibold p-[13px] rounded-md">
-            <CiEdit size={24} />
-            Edit Student
+            <FiDownload size={24} />
+            Download
           </button>
         </div>
       </div>
