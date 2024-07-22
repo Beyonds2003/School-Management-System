@@ -59,8 +59,8 @@ const page = () => {
             <SelectValue placeholder="Gender" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="asc">Male</SelectItem>
-            <SelectItem value="desc">Female</SelectItem>
+            <SelectItem value="Male">Male</SelectItem>
+            <SelectItem value="Female">Female</SelectItem>
           </SelectContent>
         </Select>
       </div>
