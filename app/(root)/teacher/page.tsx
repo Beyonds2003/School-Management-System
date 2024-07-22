@@ -1,12 +1,12 @@
-import EventCalander from "@/components/ui/EventCalander";
-import TotalCard from "@/components/ui/TotalCard";
+import EventCalander from "@/components/shared/EventCalander";
+import TotalCard from "@/components/shared/TotalCard";
 import React from "react";
 import { IoPeopleOutline } from "react-icons/io5";
 import { PiStudent } from "react-icons/pi";
 import { MdAccessTime } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
-import EventCard from "@/components/ui/EventCard";
-import TeacherTimelineTable from "@/components/ui/TeacherTimelineTable";
+import EventCard from "@/components/shared/EventCard";
+import TeacherTimelineTable from "@/components/shared/TeacherTimelineTable";
 
 const Admin = () => {
   const totalCardItems = [

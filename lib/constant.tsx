@@ -8,6 +8,7 @@ import { BiMessageRoundedError } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import { BiLogOut } from "react-icons/bi";
 import { LuPenSquare } from "react-icons/lu";
+import { GrGroup } from "react-icons/gr";
 
 export interface MenuItemType {
   name: string;
@@ -43,7 +44,13 @@ export const menu_items: MenuItemType[] = [
     name: "Timetable",
     icon: <BsTable size={20} />,
     teacher: { link: "/teacher/timetable" },
-    student: { link: "/student/timetable" },
+    student: null,
+  },
+  {
+    name: "Classroom",
+    icon: <GrGroup size={20} />,
+    teacher: null,
+    student: { link: "/student/classroom" },
   },
   {
     name: "Exam",
