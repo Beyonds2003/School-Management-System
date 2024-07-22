@@ -20,6 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { FaCheck } from "react-icons/fa";
 
 const page = () => {
   // 1. Define create student form.
@@ -38,7 +39,7 @@ const page = () => {
       <div className="flex items-center justify-center">
         <article className="mt-8 p-6 w-[600px] bg-white shadow-gray-500 shadow-sm rounded-lg">
           <h3 className="font-semibold text-2xl">Create Student</h3>
-          <p className="text-gray-600 mt-1">
+          <p className="text-gray-500 mt-1">
             Only the teacher can create student.
           </p>
           <Form {...form}>
@@ -63,7 +64,6 @@ const page = () => {
                         className="w-full placeholder-gray-500 p-3 border-[2px] border-gray-200 rounded-md   focus:outline-none"
                       />
                     </FormControl>
-                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -84,7 +84,6 @@ const page = () => {
                         className="w-full placeholder-gray-500 p-3 border-[2px] border-gray-200 rounded-md   focus:outline-none"
                       />
                     </FormControl>
-                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -105,21 +104,23 @@ const page = () => {
                         className="w-full placeholder-gray-500 p-3 border-[2px] border-gray-200 rounded-md   focus:outline-none"
                       />
                     </FormControl>
-                    <FormMessage />
                   </FormItem>
                 )}
               />
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                 {/* Year */}
                 <FormField
                   control={form.control}
                   name="year"
                   render={({ field }) => (
                     <FormItem>
+                      <FormLabel className="text-lg font-semibold">
+                        Year
+                      </FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} {...field}>
                           <SelectTrigger className="h-[45px] focus:ring-0 ring-0 border-[2px] border-gray-200">
-                            <SelectValue placeholder="Year" />
+                            <SelectValue placeholder="Choose Year" />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="1">1 Year</SelectItem>
@@ -131,7 +132,6 @@ const page = () => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -141,10 +141,13 @@ const page = () => {
                   name="term"
                   render={({ field }) => (
                     <FormItem>
+                      <FormLabel className="text-lg font-semibold">
+                        Term
+                      </FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} {...field}>
                           <SelectTrigger className=" h-[45px] focus:ring-0 ring-0 border-[2px] border-gray-200">
-                            <SelectValue placeholder="Term" />
+                            <SelectValue placeholder="Choose Term" />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="First">First Term</SelectItem>
@@ -152,7 +155,6 @@ const page = () => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -162,10 +164,13 @@ const page = () => {
                   name="major"
                   render={({ field }) => (
                     <FormItem>
+                      <FormLabel className="text-lg font-semibold">
+                        Major
+                      </FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} {...field}>
                           <SelectTrigger className=" h-[45px] focus:ring-0 ring-0 border-[2px] border-gray-200">
-                            <SelectValue placeholder="Major" />
+                            <SelectValue placeholder="Choose Major" />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="It">It</SelectItem>
@@ -177,7 +182,6 @@ const page = () => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -187,10 +191,13 @@ const page = () => {
                   name="gender"
                   render={({ field }) => (
                     <FormItem>
+                      <FormLabel className="text-lg font-semibold">
+                        Gender
+                      </FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} {...field}>
                           <SelectTrigger className=" h-[45px] focus:ring-0 ring-0 border-[2px] border-gray-200">
-                            <SelectValue placeholder="Gender" />
+                            <SelectValue placeholder="Choose Gender" />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="Male">Male</SelectItem>
@@ -198,7 +205,6 @@ const page = () => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -206,9 +212,10 @@ const page = () => {
               <div className="flex justify-end">
                 <Button
                   type="submit"
-                  className="mt-1 text-white px-8 h-[45px] "
+                  className="mt-1 flex text-[16px] flex-row gap-3 text-white px-8 h-[48px] "
                 >
-                  Create
+                  <FaCheck size={18} />
+                  Submit
                 </Button>
               </div>
             </form>
