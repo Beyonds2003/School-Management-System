@@ -8,18 +8,26 @@ const Student = () => {
   return (
     <main className="p-6 bg-gray-100">
       <div className=" flex flex-row">
-        <section className=" w-[74%] h-full pr-5">
+        <section className=" w-[74%] max-[1400px]:w-full h-full pr-5">
           {/* Student Card */}
-          <StudentCard />
+          <StudentCard
+            id={1}
+            photo=""
+            name="John Doe"
+            year={1}
+            major="IT"
+            term="Second"
+            gender="Male"
+          />
 
           {/* Timeline Table */}
           <article className="mt-6 p-6 bg-white shadow-gray-500 shadow-sm rounded-lg">
-            <p className=" text-xl font-semibold">Timetable</p>
+            <p className=" text-2xl font-semibold">Timetable</p>
             <StudentTimetable />
           </article>
         </section>
 
-        <section className="w-[26%] h-full">
+        <section className="w-[26%] max-[1400px]:hidden h-full">
           {/* Event Calander */}
           <article className="w-full flex flex-col  items-center">
             <EventCalander />

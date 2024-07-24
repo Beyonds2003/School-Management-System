@@ -43,8 +43,12 @@ const TeacherTimelineTable = () => {
   ];
 
   return (
-    <div className="mt-6">
-      <table className="w-full" border={1}>
+    <div className="mt-6 min-w-[800px]">
+      <table
+        style={{ borderCollapse: "separate", border: "0px" }}
+        className="w-full"
+        border={1}
+      >
         <tbody>
           <tr className="bg-blue-50">
             <th className="table-head">S/N</th>
