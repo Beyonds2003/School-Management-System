@@ -34,14 +34,22 @@ const StudentTimetableRow = ({
       {show === "Week" ? (
         <>
           {majors.map((major, index) => (
-            <td key={index} className={`table-des text-center`}>
-              {major}
+            <td key={index} className={`table-des p-0 text-center `}>
+              <div
+                className={`${majorColor[major as keyof typeof majorColor]} p-4 rounded-md m-3`}
+              >
+                {major}
+              </div>
             </td>
           ))}
         </>
       ) : (
-        <td colSpan={6} className={`table-des text-center`}>
-          {majors[day - 1]}
+        <td colSpan={6} className={`table-des text-start `}>
+          <div
+            className={`${majorColor[majors[day - 1] as keyof typeof majorColor]} p-4 rounded-md m-1`}
+          >
+            {majors[day - 1]}
+          </div>
         </td>
       )}
     </tr>

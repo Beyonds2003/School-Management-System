@@ -15,7 +15,7 @@ const Student = () => {
             photo=""
             name="John Doe"
             year={1}
-            major="IT"
+            major="It"
             term="Second"
             gender="Male"
           />

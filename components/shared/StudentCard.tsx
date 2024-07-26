@@ -17,12 +17,14 @@ const StudentCard = ({ id, photo, name, year, major, term, gender }: Props) => {
   const avatarTextColor = getTextColorBasedOnBackground(avatarColor);
 
   return (
-    <article className="mt-4 flex flex-row gap-8 shadow-gray-500 bg-white shadow-sm rounded-lg p-4 items-start">
+    <article
+      className={` mt-4 relative flex flex-row gap-8 shadow-gray-500 shadow-sm rounded-lg p-4 items-start`}
+    >
       {/* Image */}
       <div>
         {photo === "" ? (
           <div
-            className={`rounded-lg w-20 h-20 flex justify-center items-center`}
+            className={`rounded-full w-20 h-20 flex justify-center items-center`}
             style={{ backgroundColor: avatarColor }}
           >
             <p
@@ -39,14 +41,14 @@ const StudentCard = ({ id, photo, name, year, major, term, gender }: Props) => {
             src={photo}
             width={60}
             height={60}
-            className="rounded-lg object-cover h-20 w-20"
+            className="rounded-full object-cover h-20 w-20"
             alt="student profile image"
           />
         )}
       </div>
 
       {/* Details */}
-      <div className="w-full">
+      <div className="w-full z-10">
         <p className="text-2xl font-bold">{name}</p>
 
         <div className="flex text-lg flex-row font-semibold mt-4">
@@ -61,11 +63,27 @@ const StudentCard = ({ id, photo, name, year, major, term, gender }: Props) => {
             <p>Overall Performance</p>
             <p>80%</p>
           </div>
-          <div className="w-full h-2 mt-4 bg-gray-300 ">
-            <div className="w-[80%] h-full bg-primary " />
+          <div className="w-full h-2 mt-4 bg-gray-300 rounded-md">
+            <div className="w-[80%] h-full bg-primary rounded-md" />
           </div>
         </div>
       </div>
+
+      {/* Watermark Logo */}
+      {/* 
+        <div className="absolute top-0 right-0">
+        <Image
+          src={"/images/Hmawbi-logo.png"}
+          alt="School logo"
+          width={140}
+          height={100}
+          className="object-cover opacity-50"
+          style={{
+            filter: "opacity(0.5)",
+          }}
+        />
+      </div>
+     */}
     </article>
   );
 };
