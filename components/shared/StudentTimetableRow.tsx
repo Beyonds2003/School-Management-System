@@ -1,4 +1,5 @@
 import React from "react";
+import { TableCell, TableRow } from "@/components/ui/table";
 
 type Props = {
   time: string;
@@ -28,31 +29,36 @@ const StudentTimetableRow = ({
   day,
   show,
 }: Props) => {
+  day = day > 5 ? 1 : day;
+
   return (
-    <tr className="mt-1">
-      <td className="table-des w-[89px]">{time}</td>
+    <TableRow className="mt-1">
+      <TableCell className="table-des w-[89px]">{time}</TableCell>
       {show === "Week" ? (
         <>
           {majors.map((major, index) => (
-            <td key={index} className={`table-des p-0 text-center `}>
-              <div
-                className={`${majorColor[major as keyof typeof majorColor]} p-4 rounded-md m-3`}
-              >
-                {major}
+            <TableCell
+              key={index}
+              className={`table-des p-0 text-center min-w-[105px]`}
+            >
+              <div className={` p-4 rounded-md m-[6px]`}>
+                <p className="font-[700] text-base">{major}</p>
+                <p className="text-xs mt-[2px]">IT-11011</p>
               </div>
-            </td>
+            </TableCell>
           ))}
         </>
       ) : (
-        <td colSpan={6} className={`table-des text-start `}>
+        <TableCell colSpan={6} className={`table-des-nb text-start `}>
           <div
-            className={`${majorColor[majors[day - 1] as keyof typeof majorColor]} p-4 rounded-md m-1`}
+            className={`${majorColor[majors[day - 1] as keyof typeof majorColor]} shadow-gray-400 shadow-sm p-4 rounded-md `}
           >
-            {majors[day - 1]}
+            <p className="font-[700] text-base">{majors[day - 1]}</p>
+            <p className="text-xs mt-[2px]">IT-11011</p>
           </div>
-        </td>
+        </TableCell>
       )}
-    </tr>
+    </TableRow>
   );
 };
 

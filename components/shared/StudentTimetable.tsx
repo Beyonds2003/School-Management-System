@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import StudentTimetableRow from "./StudentTimetableRow";
+import { Table, TableBody, TableHead, TableRow } from "@/components/ui/table";
 
 const data = [
   {
@@ -56,7 +57,7 @@ const StudentTimetable = () => {
   };
 
   const majorTableRowStyle = (input: number) =>
-    `table-head rounded-md text-center  text-lg ${day !== input ? "font-medium" : "font-[900]"} ${show === "Day" && "cursor-pointer"}`;
+    `table-head rounded-md text-black text-center  text-lg ${day !== input ? "font-[500]" : "font-[900]"} ${show === "Day" && "cursor-pointer"}`;
 
   return (
     <div className="mt-4">
@@ -79,26 +80,41 @@ const StudentTimetable = () => {
       </div>
 
       {/* Timetable */}
-      <table className="w-full mt-6">
-        <tbody>
-          <tr className="">
-            <th className="table-head"></th>
-            <th onClick={() => handleDay(1)} className={majorTableRowStyle(1)}>
+      <Table className="w-full mt-6">
+        <TableBody>
+          <TableRow className="bg-blue-100 hover:bg-blue-100">
+            <TableHead className="table-head"></TableHead>
+            <TableHead
+              onClick={() => handleDay(1)}
+              className={majorTableRowStyle(1)}
+            >
               <p>Mon</p>
-            </th>
-            <th onClick={() => handleDay(2)} className={majorTableRowStyle(2)}>
+            </TableHead>
+            <TableHead
+              onClick={() => handleDay(2)}
+              className={majorTableRowStyle(2)}
+            >
               <p>Tue</p>
-            </th>
-            <th onClick={() => handleDay(3)} className={majorTableRowStyle(3)}>
+            </TableHead>
+            <TableHead
+              onClick={() => handleDay(3)}
+              className={majorTableRowStyle(3)}
+            >
               <p>Wed</p>
-            </th>
-            <th onClick={() => handleDay(4)} className={majorTableRowStyle(4)}>
+            </TableHead>
+            <TableHead
+              onClick={() => handleDay(4)}
+              className={majorTableRowStyle(4)}
+            >
               <p>Thu</p>
-            </th>
-            <th onClick={() => handleDay(5)} className={majorTableRowStyle(5)}>
+            </TableHead>
+            <TableHead
+              onClick={() => handleDay(5)}
+              className={majorTableRowStyle(5)}
+            >
               <p>Fri</p>
-            </th>
-          </tr>
+            </TableHead>
+          </TableRow>
           {data.map((item, index) => (
             <StudentTimetableRow
               key={index}
@@ -110,8 +126,8 @@ const StudentTimetable = () => {
               show={show}
             />
           ))}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
     </div>
   );
 };

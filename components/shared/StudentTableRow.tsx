@@ -1,6 +1,7 @@
 import { getTextColorBasedOnBackground, stringToColor } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
+import { TableCell, TableRow } from "@/components/ui/table";
 
 type Props = {
   num: number;
@@ -25,9 +26,9 @@ const StudentTableRow = ({
   const avatarTextColor = getTextColorBasedOnBackground(avatarColor);
 
   return (
-    <tr className="">
-      <td className="table-des">{num}.</td>
-      <td className="table-des  ">
+    <TableRow className="">
+      <TableCell className="table-des">{num}.</TableCell>
+      <TableCell className="table-des  ">
         {photo === "" ? (
           <div
             className={`rounded-full w-10 h-10 flex justify-center items-center`}
@@ -51,13 +52,15 @@ const StudentTableRow = ({
             alt="student profile image"
           />
         )}
-      </td>
-      <td className="table-des cursor-pointer hover:text-primary">{name}</td>
-      <td className="table-des">{year} Year</td>
-      <td className="table-des">{major}</td>
-      <td className="table-des">{term} Term</td>
-      <td className="table-des">{gender}</td>
-    </tr>
+      </TableCell>
+      <TableCell className="table-des cursor-pointer min-w-[170px] hover:text-primary">
+        {name}
+      </TableCell>
+      <TableCell className="table-des min-w-[100px]">{year} Year</TableCell>
+      <TableCell className="table-des">{major}</TableCell>
+      <TableCell className="table-des min-w-[150px]">{term} Term</TableCell>
+      <TableCell className="table-des">{gender}</TableCell>
+    </TableRow>
   );
 };
 

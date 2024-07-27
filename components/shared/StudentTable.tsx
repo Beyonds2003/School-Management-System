@@ -1,5 +1,6 @@
 import React from "react";
 import StudentTableRow from "./StudentTableRow";
+import { Table, TableBody, TableHead, TableRow } from "@/components/ui/table";
 
 const StudentTable = () => {
   const data = [
@@ -54,19 +55,23 @@ const StudentTable = () => {
     },
   ];
 
+  const tableHeadStyle = "table-head text-base text-black font-semibold";
+
   return (
     <div className="">
-      <table className="w-full" border={1}>
-        <tbody>
-          <tr className="bg-blue-50">
-            <th className="table-head">S/N</th>
-            <th className="table-head">Photo</th>
-            <th className="table-head">Name</th>
-            <th className="table-head">Year</th>
-            <th className="table-head">Major</th>
-            <th className="table-head">Term</th>
-            <th className="table-head">Gender</th>
-          </tr>
+      <Table className="w-full">
+        <TableBody>
+          <TableRow className="bg-blue-100 hover:bg-blue-100">
+            <TableHead className="table-head text-black font-semibold">
+              S/N
+            </TableHead>
+            <TableHead className={tableHeadStyle}>Photo</TableHead>
+            <TableHead className={tableHeadStyle}>Name</TableHead>
+            <TableHead className={tableHeadStyle}>Year</TableHead>
+            <TableHead className={tableHeadStyle}>Major</TableHead>
+            <TableHead className={tableHeadStyle}>Term</TableHead>
+            <TableHead className={tableHeadStyle}>Gender</TableHead>
+          </TableRow>
           {data.map((item, index) => (
             <StudentTableRow
               key={index}
@@ -79,8 +84,8 @@ const StudentTable = () => {
               gender={item.gender}
             />
           ))}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
     </div>
   );
 };

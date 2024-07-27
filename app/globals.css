@@ -13,9 +13,17 @@
     scrollbar-width: none; /* Firefox */
   }
 
-  .table-head,
+  .table-head {
+    @apply text-left font-semibold border-[1px] border-[#dddddd] p-4;
+  }
+
   .table-des {
-    @apply text-left border-[1px] border-[#dddddd] p-4;
+    @apply text-left text-base border-[1px] border-[#dddddd] p-4;
+  }
+
+  .table-head-nb,
+  .table-des-nb {
+    @apply text-left border-[0px] border-[#dddddd] p-4;
   }
 
   * {

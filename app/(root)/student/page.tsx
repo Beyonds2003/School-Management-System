@@ -25,6 +25,21 @@ const Student = () => {
             <p className=" text-2xl font-semibold">Timetable</p>
             <StudentTimetable />
           </article>
+
+          {/* Event Remainder Card */}
+          {/*
+          <div className=" shadow-gray-500 mt-6 shadow-sm p-5 rounded-lg">
+            <h2 className="text-xl font-semibold mb-4">Today Event</h2>
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+              <MainEventCard
+                image="/images/iso9001_label.png"
+                title={"Water Festival"}
+                date={"11 of October 2024"}
+                time={"2:00 - 4:00 PM"}
+              />
+            </div>
+          </div>
+          */}
         </section>
 
         <section className="w-[26%] max-[1400px]:hidden h-full">

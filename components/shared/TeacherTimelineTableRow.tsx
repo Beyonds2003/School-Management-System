@@ -7,6 +7,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 type Props = {
   num: number;
@@ -44,10 +53,10 @@ const TeacherTimelineTableRow = ({
       className={`cursor-pointer transition-all ${active === num ? "bg-white shadow-custom shadow-gray-200 " : ""}`}
     >
       <td className="table-des">{num}.</td>
-      <td className="table-des">{major}</td>
-      <td className="table-des">{time}</td>
-      <td className="table-des">{room}</td>
-      <td className="table-des">{year}</td>
+      <td className="table-des p-7">{major}</td>
+      <td className="table-des min-w-[190px]">{time}</td>
+      <td className="table-des min-w-[100px]">{room}</td>
+      <td className="table-des min-w-[100px]">{year}</td>
       <td className="table-des min-w-[153px]">
         {active === num ? (
           <Select onValueChange={handleValueChange}>
