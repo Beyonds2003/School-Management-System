@@ -29,7 +29,9 @@ const StudentTimetableRow = ({
   day,
   show,
 }: Props) => {
-  day = day > 5 ? 1 : day;
+  day = day === 6 || day === 0 ? 1 : day;
+
+  console.log(day);
 
   return (
     <TableRow className="mt-1">

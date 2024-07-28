@@ -62,9 +62,7 @@ const StudentTable = () => {
       <Table className="w-full">
         <TableBody>
           <TableRow className="bg-blue-100 hover:bg-blue-100">
-            <TableHead className="table-head text-black font-semibold">
-              S/N
-            </TableHead>
+            <TableHead className={tableHeadStyle}>Roll No</TableHead>
             <TableHead className={tableHeadStyle}>Photo</TableHead>
             <TableHead className={tableHeadStyle}>Name</TableHead>
             <TableHead className={tableHeadStyle}>Year</TableHead>

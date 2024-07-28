@@ -77,7 +77,7 @@ const page = () => {
         <div className="flex flex-row items-center gap-4">
           <Link
             href="/teacher/student/create"
-            className="max-w-[200px] flex flex-row items-center gap-2 border-primary border-[3px] text-primary font-semibold p-3 rounded-md"
+            className="max-w-[200px] min-w-[175px] flex flex-row items-center gap-2 border-primary border-[3px] text-primary font-semibold p-3 rounded-md"
           >
             <FaPlus size={20} />
             Create Student

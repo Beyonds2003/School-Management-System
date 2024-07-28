@@ -12,7 +12,7 @@ const Student = () => {
           {/* Student Card */}
           <StudentCard
             id={1}
-            photo=""
+            image=""
             name="John Doe"
             year={1}
             major="It"

@@ -4,7 +4,7 @@ import React from "react";
 
 type Props = {
   id: number;
-  photo: string;
+  image: string;
   name: string;
   year: number;
   major: string;
@@ -12,7 +12,7 @@ type Props = {
   gender: string;
 };
 
-const StudentCard = ({ id, photo, name, year, major, term, gender }: Props) => {
+const StudentCard = ({ id, image, name, year, major, term, gender }: Props) => {
   const avatarColor = stringToColor(name);
   const avatarTextColor = getTextColorBasedOnBackground(avatarColor);
 
@@ -22,7 +22,7 @@ const StudentCard = ({ id, photo, name, year, major, term, gender }: Props) => {
     >
       {/* Image */}
       <div>
-        {photo === "" ? (
+        {image === "" ? (
           <div
             className={`rounded-full w-20 h-20 flex justify-center items-center`}
             style={{ backgroundColor: avatarColor }}
@@ -38,7 +38,7 @@ const StudentCard = ({ id, photo, name, year, major, term, gender }: Props) => {
           </div>
         ) : (
           <Image
-            src={photo}
+            src={image}
             width={60}
             height={60}
             className="rounded-full object-cover h-20 w-20"
