@@ -21,9 +21,9 @@ const page = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mt-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mt-2 xl:h-screen lg:h-full pb-10">
         {/* Exam Card */}
-        <article className="mt-6 bg-white shadow-gray-500 shadow-sm rounded-lg overflow-hidden">
+        <article className="mt-6 bg-white shadow-gray-500 shadow-sm rounded-lg overflow-hidden h-full">
           <div className="bg-gray-900 p-4">
             <p className=" text-2xl text-white font-semibold">Final Exam</p>
           </div>
@@ -42,7 +42,7 @@ const page = () => {
         </article>
 
         {/* Tuto Card */}
-        <article className="mt-6 bg-white shadow-gray-500 shadow-sm rounded-lg overflow-hidden">
+        <article className="mt-6 bg-white shadow-gray-500 shadow-sm rounded-lg overflow-hidden h-full">
           <div className="bg-gray-200 p-4">
             <p className=" text-2xl font-semibold">Tutorial</p>
           </div>
@@ -61,7 +61,7 @@ const page = () => {
         </article>
 
         {/* Assignment Card */}
-        <article className="mt-6 bg-white shadow-gray-500 shadow-sm rounded-lg overflow-hidden">
+        <article className="mt-6 bg-white shadow-gray-500 shadow-sm rounded-lg overflow-hidden h-full">
           <div className="bg-gray-200 p-4">
             <p className=" text-2xl font-semibold">Assignment</p>
           </div>

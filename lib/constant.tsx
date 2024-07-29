@@ -70,8 +70,8 @@ export const account_menu_items: MenuItemType[] = [
   {
     name: "Help and support",
     icon: <BiMessageRoundedError size={25} />,
-    teacher: null,
-    student: null,
+    teacher: { link: "/" },
+    student: { link: "/" },
   },
   {
     name: "Profile",

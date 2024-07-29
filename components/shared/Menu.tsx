@@ -57,13 +57,17 @@ const Menu = ({ role }: { role: "teacher" | "student" }) => {
         {/* Account Items */}
         <div className="px-10 pt-4">
           <p className="text-white font-thin text-sm">ACCOUNT</p>
-          {account_menu_items.map((menu_item, index) => (
-            <div key={index} className="menu-item-container">
+          {account_menu_items.map((menu_item: any, index) => (
+            <Link
+              href={menu_item[role].link}
+              key={index}
+              className="menu-item-container"
+            >
               <div className="text-white flex flex-row items-center gap-3">
                 <div>{menu_item.icon}</div>
                 <h3 className="font-semibold text-base">{menu_item.name}</h3>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
