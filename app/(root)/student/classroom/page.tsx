@@ -5,10 +5,10 @@ import { CiSearch } from "react-icons/ci";
 
 const page = () => {
   return (
-    <main className="p-4 space-y-6">
+    <main className="p-4">
       {/* Teachers Card */}
       <div className="p-4">
-        <h2 className="font-semibold text-xl">Teachers: 8</h2>
+        <h1 className="font-semibold text-2xl ml-1 mb-2">Teachers</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
           <TeacherCard id={1} image="" name="John Doe" major="IT" />
           <TeacherCard id={2} image="" name="Michel" major="Be" />
@@ -23,10 +23,10 @@ const page = () => {
 
       {/* Students Table */}
       <div>
-        <div className="mt-4">
+        <div className="">
           {/* Student Table */}
-          <section className="shadow-gray-500 shadow-sm p-6 rounded-lg mt-6 space-y-6">
-            <h2 className="font-semibold text-xl">Students: 35</h2>
+          <section className="shadow-gray-500 shadow-sm p-6 rounded-lg mt-4 space-y-6">
+            <h2 className="font-semibold text-2xl">Students</h2>
             <div className="border-[1px] bg-white max-w-[260px] flex flex-row items-center rounded-md shadow-gray-400 shadow-sm gap-2 border-gray-300 pl-2">
               <CiSearch size={25} />
               <input

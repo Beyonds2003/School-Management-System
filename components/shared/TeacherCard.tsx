@@ -23,7 +23,7 @@ const TeacherCard = ({ id, image, name, major }: Props) => {
             style={{ backgroundColor: avatarColor }}
           >
             <p
-              className="text-xl font-semibold"
+              className="text-lg font-semibold"
               style={{ color: avatarTextColor }}
             >
               {name.split(" ").length > 1
