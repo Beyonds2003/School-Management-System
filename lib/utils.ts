@@ -33,3 +33,27 @@ export function getTextColorBasedOnBackground(bgColor: string) {
   const yiq = (r * 299 + g * 587 + b * 114) / 1000;
   return yiq >= 128 ? "#000000" : "#FFFFFF";
 }
+
+// Function to convert grades to numerical values
+export const convertGrades = (grade: string) => {
+  const gradeMapping: { [key: string]: number } = {
+    A: 4,
+    B: 3,
+    C: 2,
+    D: 1,
+    F: 0,
+  };
+  return gradeMapping[grade];
+};
+
+// Function to convert numerical values back to grades
+export const convertToGrades = (value: number) => {
+  const valueMapping: { [key: number]: string } = {
+    4: "A",
+    3: "B",
+    2: "C",
+    1: "D",
+    0: "F",
+  };
+  return valueMapping[value];
+};

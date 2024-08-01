@@ -16,7 +16,7 @@ import Link from "next/link";
 const page = () => {
   return (
     <main className="p-4 bg-gray-100 min-h-screen">
-      <h2 className="font-semibold text-xl">Students</h2>
+      <h2 className="font-semibold text-2xl">Students</h2>
       {/* Filter Students Card */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center mt-6">
         <Select>
@@ -77,7 +77,7 @@ const page = () => {
         <div className="flex flex-row items-center gap-4">
           <Link
             href="/teacher/student/create"
-            className="max-w-[200px] min-w-[175px] flex flex-row items-center gap-2 border-primary border-[3px] text-primary font-semibold p-3 rounded-md"
+            className="max-w-[200px] min-w-[175px] h-[49px] flex flex-row items-center gap-2 border-primary border-[3px] text-primary font-semibold p-3 rounded-md"
           >
             <FaPlus size={20} />
             Create Student

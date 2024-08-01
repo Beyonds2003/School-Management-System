@@ -5,7 +5,7 @@ import { Table, TableBody, TableHead, TableRow } from "@/components/ui/table";
 const StudentTable = () => {
   const data = [
     {
-      photo: "",
+      image: "",
       name: "Madara",
       year: 6,
       major: "It",
@@ -13,7 +13,7 @@ const StudentTable = () => {
       gender: "Male",
     },
     {
-      photo:
+      image:
         "https://wallpapers.com/images/hd/naruto-profile-pictures-sa1tekghfajrr928.jpg",
       name: "Naruto",
       year: 4,
@@ -22,7 +22,7 @@ const StudentTable = () => {
       gender: "Male",
     },
     {
-      photo: "",
+      image: "",
       name: "Sasuke Uchiha",
       year: 4,
       major: "It",
@@ -30,7 +30,7 @@ const StudentTable = () => {
       gender: "Male",
     },
     {
-      photo: "",
+      image: "",
       name: "Sakura",
       year: 4,
       major: "Ep",
@@ -38,7 +38,7 @@ const StudentTable = () => {
       gender: "Female",
     },
     {
-      photo: "",
+      image: "",
       name: "Hinata",
       year: 4,
       major: "Mc",
@@ -46,7 +46,7 @@ const StudentTable = () => {
       gender: "Female",
     },
     {
-      photo: "",
+      image: "",
       name: "Kakashi",
       year: 6,
       major: "It",
@@ -63,7 +63,7 @@ const StudentTable = () => {
         <TableBody>
           <TableRow className="bg-blue-100 hover:bg-blue-100">
             <TableHead className={tableHeadStyle}>Roll No</TableHead>
-            <TableHead className={tableHeadStyle}>Photo</TableHead>
+            <TableHead className={tableHeadStyle}>Image</TableHead>
             <TableHead className={tableHeadStyle}>Name</TableHead>
             <TableHead className={tableHeadStyle}>Year</TableHead>
             <TableHead className={tableHeadStyle}>Major</TableHead>
@@ -74,7 +74,7 @@ const StudentTable = () => {
             <StudentTableRow
               key={index}
               num={index + 1}
-              photo={item.photo}
+              image={item.image}
               name={item.name}
               year={item.year}
               major={item.major}

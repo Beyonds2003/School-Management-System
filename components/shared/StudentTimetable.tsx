@@ -42,7 +42,11 @@ const data = [
   },
 ];
 
-const StudentTimetable = () => {
+const StudentTimetable = ({
+  role,
+}: {
+  role: "teacher" | "student" | "admin";
+}) => {
   const [show, setShow] = useState<"Week" | "Day">("Week");
 
   const activeStyle = "font-semibold text-lg border-b-2 border-black";
@@ -124,6 +128,7 @@ const StudentTimetable = () => {
               majors={item.majors}
               day={day}
               show={show}
+              role={role}
             />
           ))}
         </TableBody>

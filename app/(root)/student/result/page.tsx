@@ -13,22 +13,10 @@ import { FiDownload } from "react-icons/fi";
 
 const page = () => {
   return (
-    <main className="p-4 space-y-8">
+    <main className="p-4 space-y-8 bg-gray-100 h-screen">
       {/* Filter Result  */}
       <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-center mt-6">
-        <Select>
-          <SelectTrigger className="h-[50px] focus:ring-0 ring-0 shadow-sm shadow-gray-400 ">
-            <SelectValue placeholder="Year" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="1">1 Year</SelectItem>
-            <SelectItem value="2">2 Year</SelectItem>
-            <SelectItem value="3">3 Year</SelectItem>
-            <SelectItem value="4">4 Year</SelectItem>
-            <SelectItem value="5">5 Year</SelectItem>
-            <SelectItem value="6">6 Year</SelectItem>
-          </SelectContent>
-        </Select>
+
         <Select>
           <SelectTrigger className=" h-[50px] focus:ring-0 ring-0 shadow-sm shadow-gray-400 ">
             <SelectValue placeholder="Term" />

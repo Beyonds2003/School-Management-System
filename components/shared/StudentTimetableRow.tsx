@@ -1,5 +1,13 @@
 import React from "react";
 import { TableCell, TableRow } from "@/components/ui/table";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 type Props = {
   time: string;
@@ -8,6 +16,7 @@ type Props = {
   majors: string[];
   day: number;
   show: "Day" | "Week";
+  role: "teacher" | "student" | "admin";
 };
 
 const majorColor = {
@@ -28,20 +37,21 @@ const StudentTimetableRow = ({
   majors,
   day,
   show,
+  role,
 }: Props) => {
   day = day === 6 || day === 0 ? 1 : day;
 
   console.log(day);
 
   return (
-    <TableRow className="mt-1">
+    <TableRow className="mt-1 hover:bg-white">
       <TableCell className="table-des w-[89px]">{time}</TableCell>
       {show === "Week" ? (
         <>
           {majors.map((major, index) => (
             <TableCell
               key={index}
-              className={`table-des p-0 text-center min-w-[105px]`}
+              className={`table-des p-0 text-center min-w-[105px] hover:bg-gray-100 ${role === "teacher" ? "cursor-pointer" : ""}`}
             >
               <div className={` p-4 rounded-md m-[6px]`}>
                 <p className="font-[700] text-base">{major}</p>

@@ -32,14 +32,18 @@ const Menu = ({ role }: { role: "teacher" | "student" }) => {
         {/* Menu Items */}
         <div className="px-10 pt-8">
           <p className="text-white font-thin text-sm">MENU</p>
-          {menu_items.map((menu_item: MenuItemType, index) => {
+          {menu_items.map((menu_item: any, index) => {
             return (
               <>
                 {menu_item[role] && (
                   <Link
                     href={menu_item[role].link}
                     key={index}
-                    className={`menu-item-container ${pathname === menu_item[role].link ? "bg-white bg-opacity-10" : ""}`}
+                    className={`menu-item-container ${
+                      pathname === menu_item[role].link
+                        ? "bg-white bg-opacity-10"
+                        : ""
+                    }`}
                   >
                     <div className="text-white flex flex-row items-center gap-3 ">
                       <div>{menu_item.icon}</div>

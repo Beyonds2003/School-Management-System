@@ -5,7 +5,7 @@ import { CiSearch } from "react-icons/ci";
 
 const page = () => {
   return (
-    <main className="p-4">
+    <main className="p-4 bg-gray-100">
       {/* Teachers Card */}
       <div className="p-4">
         <h1 className="font-semibold text-2xl ml-1 mb-2">Teachers</h1>
