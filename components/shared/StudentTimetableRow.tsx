@@ -11,6 +11,7 @@ type Props = {
   day: number;
   show: "Day" | "Week";
   role: "teacher" | "student" | "admin";
+  data: any;
 };
 
 const majorColor = {
@@ -32,6 +33,7 @@ const StudentTimetableRow = ({
   day,
   show,
   role,
+  data,
 }: Props) => {
   day = day === 6 || day === 0 ? 1 : day;
 
@@ -46,12 +48,19 @@ const StudentTimetableRow = ({
                 key={index}
                 className={`table-des p-0 text-center min-w-[105px] hover:bg-gray-100 ${role === "teacher" ? "cursor-pointer" : ""}`}
               >
-                <SheetTrigger>
+                {role === "teacher" ? (
+                  <SheetTrigger>
+                    <div className={` p-4 rounded-md m-[6px]`}>
+                      <p className="font-[700] text-base">{major}</p>
+                      <p className="text-xs mt-[2px]">IT-11011</p>
+                    </div>
+                  </SheetTrigger>
+                ) : (
                   <div className={` p-4 rounded-md m-[6px]`}>
                     <p className="font-[700] text-base">{major}</p>
                     <p className="text-xs mt-[2px]">IT-11011</p>
                   </div>
-                </SheetTrigger>
+                )}
               </TableCell>
             ))}
           </>
@@ -65,7 +74,12 @@ const StudentTimetableRow = ({
             </div>
           </TableCell>
         )}
-        <EditTimetableRow />
+        <EditTimetableRow
+          major={data}
+          majorCode={"IT-11011"}
+          time={time}
+          day={day}
+        />
       </Sheet>
     </TableRow>
   );

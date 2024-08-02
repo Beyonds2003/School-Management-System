@@ -129,6 +129,7 @@ const StudentTimetable = ({
               day={day}
               show={show}
               role={role}
+              data={data}
             />
           ))}
         </TableBody>
