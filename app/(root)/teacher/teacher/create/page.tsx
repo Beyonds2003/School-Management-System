@@ -137,7 +137,7 @@ const page = () => {
                     </FormLabel>
                     <FormControl>
                       <div id="tags">
-                        <ReactTags
+                        {/* <ReactTags
                           tags={field.value.map(
                             (tag, index): Tag => ({
                               id: index,
@@ -160,7 +160,7 @@ const page = () => {
                           placeholder="Enter your subjects"
                           autocomplete
                           allowDragDrop={false}
-                        />
+                        /> */}
                       </div>
                     </FormControl>
                   </FormItem>

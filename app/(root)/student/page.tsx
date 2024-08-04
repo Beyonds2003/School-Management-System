@@ -23,7 +23,7 @@ const Student = () => {
           {/* Timeline Table */}
           <article className="mt-6 p-6 bg-white shadow-gray-500 shadow-sm rounded-lg">
             <p className=" text-2xl font-semibold">Timetable</p>
-            <StudentTimetable />
+            <StudentTimetable role={"student"} />
           </article>
 
           {/* Event Remainder Card */}
