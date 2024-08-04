@@ -4,9 +4,8 @@ import React from "react";
 import { IoPeopleOutline } from "react-icons/io5";
 import { PiStudent } from "react-icons/pi";
 import { MdAccessTime } from "react-icons/md";
-import { FaPlus } from "react-icons/fa6";
-import EventCard from "@/components/shared/EventCard";
 import TeacherTimelineTable from "@/components/shared/TeacherTimelineTable";
+import EventCardContainer from "@/components/shared/EventCardContainer";
 
 const Admin = () => {
   const totalCardItems = [
@@ -62,26 +61,7 @@ const Admin = () => {
           </article>
 
           {/* Event Card */}
-          <article className="mt-4 p-4 bg-white shadow-gray-500 shadow-sm rounded-lg">
-            <div className="flex flex-row justify-between items-center">
-              <h2 className="text-lg font-semibold">Upcoming Events</h2>
-              <button className="bg-blue-300 p-2 rounded-lg">
-                <FaPlus size={20} />
-              </button>
-            </div>
-            <div className="mt-4 flex flex-col gap-3">
-              <EventCard
-                title={"Water Festival"}
-                date={"11 of October 2024"}
-                time={"2:00 - 4:00 PM"}
-              />
-              <EventCard
-                title={"GSI Speaking"}
-                date={"23 of January 2025"}
-                time={"2:00 - 4:00 PM"}
-              />
-            </div>
-          </article>
+          <EventCardContainer />
         </section>
       </div>
     </main>

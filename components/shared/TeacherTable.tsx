@@ -1,84 +1,66 @@
 import React from "react";
-import StudentTableRow from "./StudentTableRow";
 import { Table, TableBody, TableHead, TableRow } from "@/components/ui/table";
+import TeacherTableRow from "./TeacherTableRow";
 
 const data = [
   {
     image: "",
-    name: "Madara",
-    year: 6,
+    name: "Daw Mya",
     major: "It",
-    term: "Second",
-    gender: "Male",
-  },
-  {
-    image:
-      "https://wallpapers.com/images/hd/naruto-profile-pictures-sa1tekghfajrr928.jpg",
-    name: "Naruto",
-    year: 4,
-    major: "It",
-    term: "First",
-    gender: "Male",
+    teachYear: [4, 3, 2],
+    subjects: ["C++", "Web", "English", "Math", "Be"],
+    gender: "Female",
   },
   {
     image: "",
-    name: "Sasuke Uchiha",
-    year: 4,
-    major: "It",
-    term: "First",
-    gender: "Male",
+    name: "Daw Hla",
+    major: "Ec",
+    teachYear: [1, 2],
+    subjects: ["C++", "Web"],
+    gender: "Female",
   },
   {
     image: "",
-    name: "Sakura",
-    year: 4,
+    name: "Daw Su",
     major: "Ep",
-    term: "Second",
+    teachYear: [1],
+    subjects: ["C++", "Web"],
     gender: "Female",
   },
   {
     image: "",
-    name: "Hinata",
-    year: 4,
+    name: "U Kyaw",
     major: "Mc",
-    term: "First",
-    gender: "Female",
-  },
-  {
-    image: "",
-    name: "Kakashi",
-    year: 6,
-    major: "It",
-    term: "First",
+    teachYear: [5, 6],
+    subjects: ["C++", "Web"],
     gender: "Male",
   },
 ];
 
-const StudentTable = () => {
+const TeacherTable = () => {
   const tableHeadStyle = "table-head text-base text-black font-semibold";
-
   return (
-    <div className="">
+    <div>
       <Table className="w-full">
         <TableBody>
           <TableRow className="bg-blue-100 hover:bg-blue-100">
-            <TableHead className={tableHeadStyle}>Roll No</TableHead>
+            <TableHead className={tableHeadStyle}>S/N</TableHead>
             <TableHead className={tableHeadStyle}>Image</TableHead>
             <TableHead className={tableHeadStyle}>Name</TableHead>
-            <TableHead className={tableHeadStyle}>Year</TableHead>
             <TableHead className={tableHeadStyle}>Major</TableHead>
-            <TableHead className={tableHeadStyle}>Term</TableHead>
+            <TableHead className={tableHeadStyle}>Subjects</TableHead>
+            <TableHead className={tableHeadStyle}>Teach Year</TableHead>
             <TableHead className={tableHeadStyle}>Gender</TableHead>
           </TableRow>
           {data.map((item, index) => (
-            <StudentTableRow
+            <TeacherTableRow
               key={index}
               num={index + 1}
               image={item.image}
               name={item.name}
-              year={item.year}
               major={item.major}
-              term={item.term}
+              teachYear={item.teachYear}
+              subjects={item.subjects}
               gender={item.gender}
             />
           ))}
@@ -88,4 +70,4 @@ const StudentTable = () => {
   );
 };
 
-export default StudentTable;
+export default TeacherTable;

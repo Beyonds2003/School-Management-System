@@ -2,45 +2,8 @@
 import React, { useState } from "react";
 import StudentTimetableRow from "./StudentTimetableRow";
 import { Table, TableBody, TableHead, TableRow } from "@/components/ui/table";
-
-const data = [
-  {
-    time: "9:00",
-    year: 2,
-    term: "Second",
-    majors: ["English", "Math", "Web", "C++", "Web"],
-  },
-  {
-    time: "10:00",
-    year: 2,
-    term: "Second",
-    majors: ["English", "Math", "Web", "C++", "Web"],
-  },
-  {
-    time: "11:00",
-    year: 2,
-    term: "Second",
-    majors: ["Dld", "Dc", "Math", "Be", "Library"],
-  },
-  {
-    time: "1:00",
-    year: 2,
-    term: "Second",
-    majors: ["Dld", "Dc", "English", "Be", "Library"],
-  },
-  {
-    time: "2:00",
-    year: 2,
-    term: "Second",
-    majors: ["Dc", "C++", "Dld", "Math", "Be"],
-  },
-  {
-    time: "3:00",
-    year: 2,
-    term: "Second",
-    majors: ["Dc", "C++", "Dld", "Math", "Be"],
-  },
-];
+import { timetableData, TimetableDataType } from "@/lib/constant";
+import { Sheet } from "../ui/sheet";
 
 const StudentTimetable = ({
   role,
@@ -119,7 +82,7 @@ const StudentTimetable = ({
               <p>Fri</p>
             </TableHead>
           </TableRow>
-          {data.map((item, index) => (
+          {timetableData.map((item: TimetableDataType, index) => (
             <StudentTimetableRow
               key={index}
               time={item.time}
@@ -129,7 +92,6 @@ const StudentTimetable = ({
               day={day}
               show={show}
               role={role}
-              data={data}
             />
           ))}
         </TableBody>

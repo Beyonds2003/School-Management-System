@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/select";
 import { FaCheck } from "react-icons/fa";
 import { WithContext as ReactTags } from "react-tag-input";
+import { Subjects } from "@/lib/constant";
 
 // Specifies which characters should terminate tags input. An array of character codes.
 const KeyCodes = {
@@ -30,25 +31,56 @@ const KeyCodes = {
 
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
+const suggestions = Subjects.map((subject) => {
+  return {
+    id: subject,
+    text: subject,
+    className: "",
+  };
+});
+
 interface Tag {
-  id: number;
+  id: string;
   text: string;
   className?: string;
 }
 
+interface Field {
+  value: Tag[];
+  onChange: (value: Tag[]) => void;
+}
+
 const page = () => {
+  const handleDelete = (field: Field, i: number): void => {
+    const newTags = field.value.filter((_, index) => index !== i);
+    field.onChange(newTags);
+  };
+
+  const handleAddition = (field: Field, tag: Tag): void => {
+    if (tag && tag.text && typeof tag.text === "string") {
+      const newTag: Tag = {
+        id: `${new Date().getTime()}`,
+        text: tag.text.trim(),
+      };
+      const newTags = [...field.value, newTag];
+      field.onChange(newTags);
+    }
+  };
+
   // 1. Define create teacher form.
   const form = useForm<z.infer<typeof createTeacherFormSchema>>({
     resolver: zodResolver(createTeacherFormSchema),
+    defaultValues: {
+      subjects: [],
+      teachYear: [],
+    },
   });
 
   // 2. Handle form submission.
   function onSubmit(values: z.infer<typeof createTeacherFormSchema>) {
     // Do something with the form values.
-    console.log(values);
+    console.log("Values", values);
   }
-
-  const [tags, setTags] = React.useState<any[]>([]);
 
   return (
     <main className="p-4 bg-gray-100 min-h-screen">
@@ -138,24 +170,43 @@ const page = () => {
                     <FormControl>
                       <div id="tags">
                         <ReactTags
-                          tags={field.value.map(
-                            (tag, index): Tag => ({
-                              id: index,
-                              text: tag,
-                              className: "", // or provide a default className if needed
-                            }),
-                          )}
+                          tags={field.value}
+                          suggestions={suggestions}
                           delimiters={delimiters}
-                          handleDelete={(i) => {
-                            const newTags = field.value.filter(
-                              (_, index) => index !== i,
-                            );
-                            field.onChange(newTags);
-                          }}
-                          handleAddition={(tag) => {
-                            const newTags = [...field.value, tag.text];
-                            field.onChange(newTags);
-                          }}
+                          handleDelete={(i: number) => handleDelete(field, i)}
+                          handleAddition={(tag: any) =>
+                            handleAddition(field, tag)
+                          }
+                          inputFieldPosition="bottom"
+                          placeholder="Enter your subjects"
+                          autocomplete
+                          allowDragDrop={false}
+                        />
+                      </div>
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+
+              {/* Teach Year */}
+              <FormField
+                control={form.control}
+                name="teachYear"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-lg font-semibold">
+                      Teach Year
+                    </FormLabel>
+                    <FormControl>
+                      <div id="tags">
+                        <ReactTags
+                          tags={field.value}
+                          suggestions={suggestions}
+                          delimiters={delimiters}
+                          handleDelete={(i: number) => handleDelete(field, i)}
+                          handleAddition={(tag: any) =>
+                            handleAddition(field, tag)
+                          }
                           inputFieldPosition="bottom"
                           placeholder="Enter your subjects"
                           autocomplete

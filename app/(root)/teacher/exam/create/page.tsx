@@ -20,9 +20,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { FaCheck } from "react-icons/fa";
+import { DatePicker } from "@/components/ui/date-picker";
 
 const page = () => {
-  // 1. Define create student form.
+  // 1. Define create exam form.
   const form = useForm<z.infer<typeof createExamFormSchema>>({
     resolver: zodResolver(createExamFormSchema),
   });
@@ -98,12 +99,9 @@ const page = () => {
                       Date
                     </FormLabel>
                     <FormControl>
-                      <input
-                        type="text"
-                        {...field}
-                        placeholder="Enter Date (11 of October 2024)"
-                        className="w-full placeholder-gray-500 p-3 border-[2px] border-gray-200 rounded-md   focus:outline-none"
-                      />
+                      <div>
+                        <DatePicker field={field} />
+                      </div>
                     </FormControl>
                   </FormItem>
                 )}

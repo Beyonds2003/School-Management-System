@@ -22,7 +22,7 @@ const page = () => {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <Select>
-            <SelectTrigger className=" h-[50px] focus:ring-0 ring-0 shadow-sm shadow-gray-400 ">
+            <SelectTrigger className=" h-[50px] focus:ring-0 ring-0 shadow-sm shadow-gray-200 ">
               <SelectValue placeholder="Major" />
             </SelectTrigger>
             <SelectContent>
