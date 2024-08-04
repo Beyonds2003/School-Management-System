@@ -169,9 +169,20 @@ const page = () => {
                     </FormLabel>
                     <FormControl>
                       <div id="tags">
+<<<<<<< HEAD
                         <ReactTags
                           tags={field.value}
                           suggestions={suggestions}
+=======
+                        {/* <ReactTags
+                          tags={field.value.map(
+                            (tag, index): Tag => ({
+                              id: index,
+                              text: tag,
+                              className: "", // or provide a default className if needed
+                            }),
+                          )}
+>>>>>>> 96a2e1e1a8fd0fc3c3e3ce687f41e1732d89a6a0
                           delimiters={delimiters}
                           handleDelete={(i: number) => handleDelete(field, i)}
                           handleAddition={(tag: any) =>
@@ -211,7 +222,7 @@ const page = () => {
                           placeholder="Enter your subjects"
                           autocomplete
                           allowDragDrop={false}
-                        />
+                        /> */}
                       </div>
                     </FormControl>
                   </FormItem>

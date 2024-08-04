@@ -3,6 +3,7 @@ import React from "react";
 import EventCard from "@/components/shared/EventCard";
 import StudentCard from "@/components/shared/StudentCard";
 import StudentTimetable from "@/components/shared/StudentTimetable";
+import EventCardContainer from "@/components/shared/EventCardContainer";
 
 const Student = () => {
   return (
@@ -23,7 +24,7 @@ const Student = () => {
           {/* Timeline Table */}
           <article className="mt-6 p-6 bg-white shadow-gray-500 shadow-sm rounded-lg">
             <p className=" text-2xl font-semibold">Timetable</p>
-            <StudentTimetable />
+            <StudentTimetable role={"student"} />
           </article>
 
           {/* Event Remainder Card */}
@@ -49,23 +50,7 @@ const Student = () => {
           </article>
 
           {/* Event Card */}
-          <article className="mt-4 p-4 bg-white shadow-gray-500 shadow-sm rounded-lg">
-            <div className="flex flex-row justify-between items-center">
-              <h2 className="text-lg font-semibold">Upcoming Events</h2>
-            </div>
-            <div className="mt-4 flex flex-col gap-3">
-              <EventCard
-                title={"Water Festival"}
-                date={"11 of October 2024"}
-                time={"2:00 - 4:00 PM"}
-              />
-              <EventCard
-                title={"GSI Speaking"}
-                date={"23 of January 2025"}
-                time={"2:00 - 4:00 PM"}
-              />
-            </div>
-          </article>
+          <EventCardContainer />
         </section>
       </div>
     </main>

@@ -71,7 +71,7 @@ const page = () => {
       <div className="flex flex-row items-end justify-between">
         <h2 className="font-semibold text-2xl">IT / 2 Year / 2 Term / 2024</h2>
         <div className="flex flex-row items-center gap-4">
-          <Button className=" flex flex-row items-center gap-2 border-primary border-[3px] text-primary font-semibold p-3 bg-white rounded-md h-[44px] px-4 hover:bg-gray-100">
+          <Button className=" flex flex-row items-center gap-2 border-primary border-[3px] text-primary font-semibold p-3 bg-white rounded-md h-[47px] px-4 hover:bg-gray-100">
             <FaSearch size={18} className="" />
             Search
           </Button>

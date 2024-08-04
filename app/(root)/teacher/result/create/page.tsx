@@ -14,9 +14,11 @@ import CreateResultTable from "@/components/shared/CreateResultTable";
 
 const page = () => {
   const [tableRowCount, setTableRowCount] = useState<number>(1);
-  const [checkTableRowValid, setCheckTableRowValid] = useState<boolean[]>([
-    false,
-  ]);
+  const [checkTableRowValid, setCheckTableRowValid] = useState<{
+    [key: string]: number;
+  }>({
+    false: tableRowCount,
+  });
 
   const handleTableRowPlus = () => {
     setTableRowCount(tableRowCount + 1);
@@ -30,9 +32,13 @@ const page = () => {
 
   useEffect(() => {
     if (tableRowCount > 0) {
-      setCheckTableRowValid(new Array(tableRowCount).fill(false));
+      setCheckTableRowValid({
+        false: tableRowCount,
+      });
     }
   }, [tableRowCount]);
+
+  console.log(checkTableRowValid);
 
   return (
     <main className="p-4 space-y-8 bg-gray-100 h-screen">
@@ -113,7 +119,7 @@ const page = () => {
             </Button>
           </div>
           <Button
-            disabled
+            disabled={checkTableRowValid["false"] !== 0}
             className="max-w-[200px] px-4 h-[44px] flex flex-row items-center gap-3 bg-primary text-white font-semibold p-[13px] rounded-md text-lg"
           >
             <FaCheck size={18} />

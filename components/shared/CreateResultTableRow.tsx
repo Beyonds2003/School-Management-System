@@ -6,7 +6,9 @@ const CreateResultTableRow = ({
   setCheckTableRowValid,
 }: {
   num: number;
-  setCheckTableRowValid: React.Dispatch<React.SetStateAction<boolean[]>>;
+  setCheckTableRowValid: React.Dispatch<
+    React.SetStateAction<{ [key: string]: number }>
+  >;
 }) => {
   const [isValid, setIsValid] = useState(false);
   const [data, setData] = useState({
@@ -34,9 +36,8 @@ const CreateResultTableRow = ({
       data["C++"]
     ) {
       setIsValid(true);
-      setCheckTableRowValid((prev) =>
-        prev.map((item, index) => (index === num - 1 ? true : item)),
-      );
+      // Reduce table row count
+      setCheckTableRowValid((prev) => ({ ...prev, false: prev["false"] - 1 }));
     } else {
       setIsValid(false);
     }

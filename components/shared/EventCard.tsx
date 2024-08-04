@@ -20,7 +20,7 @@ const EventCard = ({ title, date, time }: Props) => {
           <div className="flex flex-col gap-2 ">
             <div className="flex flex-row items-center gap-2">
               <RxCalendar size={17} />
-              <p className="text-sm">{date.toLocaleDateString()}</p>
+              <p className="text-sm">{new Date(date).toLocaleDateString()}</p>
             </div>
             <div className="flex flex-row items-center gap-2">
               <MdAccessTime size={17} />

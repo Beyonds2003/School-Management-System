@@ -7,7 +7,9 @@ const subjects = ["English", "Math", "Be", "Dld", "Dc", "Web", "C++"];
 
 type Props = {
   rowCount: number;
-  setCheckTableRowValid: React.Dispatch<React.SetStateAction<boolean[]>>;
+  setCheckTableRowValid: React.Dispatch<
+    React.SetStateAction<{ [key: string]: number }>
+  >;
 };
 
 const CreateResultTable = ({ rowCount, setCheckTableRowValid }: Props) => {
