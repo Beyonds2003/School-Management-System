@@ -8,7 +8,7 @@ const data = [
     name: "Daw Mya",
     major: "It",
     teachYear: [4, 3, 2],
-    subjects: ["C++", "Web", "English", "Math", "Be"],
+    subjects: ["C++", "Web", "English"],
     gender: "Female",
   },
   {
@@ -45,7 +45,6 @@ const TeacherTable = () => {
         <TableBody>
           <TableRow className="bg-blue-100 hover:bg-blue-100">
             <TableHead className={tableHeadStyle}>S/N</TableHead>
-            <TableHead className={tableHeadStyle}>Image</TableHead>
             <TableHead className={tableHeadStyle}>Name</TableHead>
             <TableHead className={tableHeadStyle}>Major</TableHead>
             <TableHead className={tableHeadStyle}>Subjects</TableHead>

@@ -23,8 +23,8 @@ const StudentTableRow = ({
 }: Props) => {
   return (
     <TableRow className="">
-      <TableCell className="table-des">{num}.</TableCell>
-      <TableCell className="table-des  ">
+      <TableCell className="table-des w-[100px]">{num}.</TableCell>
+      <TableCell className="table-des flex flex-row items-center gap-5 ">
         <ProfileImage
           image={image}
           name={name}
@@ -32,13 +32,14 @@ const StudentTableRow = ({
           height={40}
           textSize="text-sm"
         />
-      </TableCell>
-      <TableCell className="table-des cursor-pointer min-w-[170px] hover:text-primary">
-        {name}
+        <div className="mb-1">
+          <p className="text-lg font-semibold">{name}</p>
+          <p className="text-gray-600 text-sm">addykyaw4@gmail.com</p>
+        </div>
       </TableCell>
       <TableCell className="table-des min-w-[100px]">{year} Year</TableCell>
-      <TableCell className="table-des">{major}</TableCell>
       <TableCell className="table-des min-w-[150px]">{term} Term</TableCell>
+      <TableCell className="table-des">{major}</TableCell>
       <TableCell className="table-des">{gender}</TableCell>
     </TableRow>
   );

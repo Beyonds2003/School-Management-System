@@ -12,6 +12,7 @@ export const createStudentFormSchema = z.object({
     .min(6, { message: "Password must be at least 6 characters" }),
   year: z.enum(["1", "2", "3", "4", "5", "6"]),
   term: z.enum(["First", "Second"]),
+  rollNum: z.number(),
   major: z.enum(["It", "Civil", "Archi", "Ep", "Ec", "Mc"]),
   gender: z.enum(["Male", "Female"]),
 });
@@ -58,10 +59,15 @@ export const createExamFormSchema = z.object({
 
 export const createEventFormSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
-  description: z.string().max(200),
+  description: z.string().min(20).max(200),
   date: z.date(),
-  time: z
+  time: z.string().min(1, { message: "Time is required" }),
+});
+
+export const studentTeacherLoginForm = z.object({
+  email: z
     .string()
-    .min(1, { message: "Time is required" })
-    .max(10, { message: "Time is invalid" }),
+    .min(1, { message: "Email is required" })
+    .email({ message: "Email is invalid" }),
+  password: z.string(),
 });

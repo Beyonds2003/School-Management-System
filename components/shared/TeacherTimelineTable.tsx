@@ -1,15 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import TeacherTimelineTableRow from "./TeacherTimelineTableRow";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableHead, TableRow } from "@/components/ui/table";
 
 const data = [
   {

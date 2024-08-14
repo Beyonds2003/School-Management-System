@@ -32,7 +32,7 @@ const Admin = () => {
   return (
     <main className="p-6 bg-gray-100">
       <h2 className="text-xl font-semibold">Overview</h2>
-      <div className=" flex flex-row">
+      <div className="flex flex-row">
         <section className=" w-[74%] max-[1350px]:w-full h-full pr-5">
           {/* Total Card */}
           <article className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3  gap-6">

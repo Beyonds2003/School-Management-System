@@ -14,7 +14,7 @@ type Props = {
 const StudentCard = ({ id, image, name, year, major, term, gender }: Props) => {
   return (
     <article
-      className={` mt-4 bg-primary text-white relative flex flex-row gap-8 shadow-gray-500 shadow-sm rounded-lg p-4 items-start`}
+      className={` mt-4 bg-primary text-white relative flex flex-row gap-8 shadow-gray-500 shadow-sm rounded-lg p-6 items-start`}
     >
       {/* Image */}
       <div>

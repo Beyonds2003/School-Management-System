@@ -7,11 +7,18 @@ import { usePathname } from "next/navigation";
 
 const Menu = ({ role }: { role: "teacher" | "student" }) => {
   const pathname = usePathname();
+  const menu_position =
+    pathname.split("/")[2] === "dashboard" ? "" : pathname.split("/")[2];
+
+  console.log(menu_position);
 
   return (
     <section className="fixed w-[300px] h-full bg-primary">
       {/* Menu Header */}
-      <div className="flex flex-row items-center gap-5 p-5">
+      <Link
+        href="/"
+        className="flex flex-row items-center gap-5 p-5 cursor-pointer"
+      >
         <Image
           src="/images/Hmawbi-logo.png"
           alt="Hmawbi logo"
@@ -23,7 +30,7 @@ const Menu = ({ role }: { role: "teacher" | "student" }) => {
             Technological University (Hmawbi)
           </h3>
         </div>
-      </div>
+      </Link>
 
       <div className="divider" />
 
@@ -39,11 +46,10 @@ const Menu = ({ role }: { role: "teacher" | "student" }) => {
                   <Link
                     href={menu_item[role].link}
                     key={index}
-                    className={`menu-item-container ${
-                      pathname === menu_item[role].link
+                    className={`menu-item-container ${pathname === menu_item[role].link
                         ? "bg-white bg-opacity-10"
                         : ""
-                    }`}
+                      }`}
                   >
                     <div className="text-white flex flex-row items-center gap-3 ">
                       <div>{menu_item.icon}</div>

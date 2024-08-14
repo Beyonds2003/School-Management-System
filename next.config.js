@@ -4,7 +4,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ["image.petmd.com", "wallpapers.com"],
+    domains: ["image.petmd.com", "wallpapers.com", "hbtu.edu.mm"],
   },
 };
 

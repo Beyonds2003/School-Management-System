@@ -63,11 +63,10 @@ const StudentTable = () => {
         <TableBody>
           <TableRow className="bg-blue-100 hover:bg-blue-100">
             <TableHead className={tableHeadStyle}>Roll No</TableHead>
-            <TableHead className={tableHeadStyle}>Image</TableHead>
             <TableHead className={tableHeadStyle}>Name</TableHead>
             <TableHead className={tableHeadStyle}>Year</TableHead>
-            <TableHead className={tableHeadStyle}>Major</TableHead>
             <TableHead className={tableHeadStyle}>Term</TableHead>
+            <TableHead className={tableHeadStyle}>Major</TableHead>
             <TableHead className={tableHeadStyle}>Gender</TableHead>
           </TableRow>
           {data.map((item, index) => (

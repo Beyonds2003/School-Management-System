@@ -38,12 +38,15 @@ const StudentTimetable = ({
         >
           <p className="">Week</p>
         </button>
-        <button
-          onClick={() => setShow("Day")}
-          className={show === "Day" ? activeStyle : ""}
-        >
-          <p>Day</p>
-        </button>
+
+        {role === "student" && (
+          <button
+            onClick={() => setShow("Day")}
+            className={show === "Day" ? activeStyle : ""}
+          >
+            <p>Day</p>
+          </button>
+        )}
       </div>
 
       {/* Timetable */}

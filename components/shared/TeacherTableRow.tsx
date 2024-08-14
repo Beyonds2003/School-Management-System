@@ -24,7 +24,7 @@ const TeacherTableRow = ({
   return (
     <TableRow className="">
       <TableCell className="table-des">{num}.</TableCell>
-      <TableCell className="table-des  ">
+      <TableCell className="table-des flex flex-row items-center gap-5">
         <ProfileImage
           image={image}
           name={name}
@@ -32,9 +32,10 @@ const TeacherTableRow = ({
           height={40}
           textSize="text-sm"
         />
-      </TableCell>
-      <TableCell className="table-des cursor-pointer min-w-[170px] hover:text-primary">
-        {name}
+        <div className="mb-1">
+          <p className="text-lg font-semibold">{name}</p>
+          <p className="text-gray-600 text-sm">addykyaw4@gmail.com</p>
+        </div>
       </TableCell>
       <TableCell className="table-des min-w-[100px]">{major}</TableCell>
       <TableCell className="table-des max-w-[150px] overflow-x-scroll no-scrollbar">
