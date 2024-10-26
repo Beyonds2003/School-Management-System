@@ -2,12 +2,12 @@ import React from "react";
 import ProfileImage from "./ProfileImage";
 
 type Props = {
-  id: number;
+  id: string;
   image: string;
   name: string;
   year: number;
   major: string;
-  term: string;
+  term: number;
   gender: string;
 };
 
@@ -32,11 +32,15 @@ const StudentCard = ({ id, image, name, year, major, term, gender }: Props) => {
         <p className="text-3xl font-bold">{name}</p>
 
         <div className="flex text-lg flex-row font-semibold mt-3">
-          <p className="pr-4 border-r-[1px] border-white">{major}</p>
+          <p className="pr-4 border-r-[1px] border-white">
+            {major.toUpperCase()}
+          </p>
           <p className="px-4 border-r-[1px] border-white">
             {year} Year - {term} Term
           </p>
-          <p className="pl-4">{gender}</p>
+          <p className="pl-4">
+            {gender.charAt(0).toUpperCase() + gender.slice(1)}
+          </p>
         </div>
         <div className="mt-4">
           <div className="flex flex-row items-end  justify-between font-semibold">

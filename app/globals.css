@@ -11,6 +11,13 @@
     display: none;
   }
 
+  .addedSubjectLi {
+    font-size: 14px;
+    margin-left: 35px;
+    list-style-type: circle;
+    margin-bottom: 10px;
+  }
+
   .no-scrollbar {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */

@@ -4,11 +4,12 @@ import { MdAccessTime } from "react-icons/md";
 
 type Props = {
   title: string;
+  description: string;
   date: string;
   time: string;
 };
 
-const ExamCard = ({ title, date, time }: Props) => {
+const ExamCard = ({ title, description, date, time }: Props) => {
   return (
     <div className="flex flex-row items-start gap-4">
       {/* Circle */}
@@ -18,7 +19,7 @@ const ExamCard = ({ title, date, time }: Props) => {
 
       <div className="space-y-2">
         <p className="font-semibold text-lg">{title}</p>
-        <p className="text-base">Learn the fundamentals of React.</p>
+        <p className="text-base">{description}</p>
         <div className="flex flex-col gap-2 ">
           <div className="flex flex-row items-center gap-2">
             <RxCalendar size={19} />

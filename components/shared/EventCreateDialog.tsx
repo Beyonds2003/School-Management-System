@@ -5,6 +5,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import {
   Form,
@@ -13,15 +14,19 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
+import { Button } from "@nextui-org/react";
 import { FaCheck } from "react-icons/fa";
 import { DatePicker } from "@/components/ui/date-picker";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { createEventFormSchema } from "@/lib/formSchema";
 import { z } from "zod";
-import { Button } from "../ui/button";
+import { backend_url } from "@/lib/constant";
+import { useRouter } from "next/navigation";
+import Loading_spinner from "../ui/loading_spinner";
 
 type Props = {
+  id: string;
   action: string;
   name: string;
   descritption: string;
@@ -30,12 +35,15 @@ type Props = {
 };
 
 const EventCreateDialog = ({
+  id,
   action,
   name,
   descritption,
   date,
   time,
 }: Props) => {
+  const router = useRouter();
+
   // 1. Define create event form.
   const form = useForm<z.infer<typeof createEventFormSchema>>({
     resolver: zodResolver(createEventFormSchema),
@@ -48,15 +56,46 @@ const EventCreateDialog = ({
   });
 
   // 2. Handle form submission.
-  function onSubmit(values: z.infer<typeof createEventFormSchema>) {
-    // Do something with the form values.
+  async function onSubmit(values: z.infer<typeof createEventFormSchema>) {
     if (action === "create") {
-      console.log("event create");
+      try {
+        // Make a POST request to create the event.
+        const res = await fetch(`${backend_url}/event`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(values),
+        });
+        const data = await res.json();
+
+        console.log("Create event", data);
+
+        form.reset();
+      } catch (eror) {
+        console.log(eror);
+      }
     } else if (action === "edit") {
-      console.log("event edit");
+      try {
+        // Make a PATCH request to edit the event.
+        const res = await fetch(`${backend_url}/event/${id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(values),
+        });
+        const data = await res.json();
+        console.log("Update event", data);
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       return;
     }
+    router.refresh();
   }
 
   return (
@@ -154,13 +193,17 @@ const EventCreateDialog = ({
                 )}
               />
               <div className="flex justify-end">
-                <Button
-                  type="submit"
-                  className="mt-1 flex text-[16px] flex-row gap-3 text-white px-8 h-[48px] "
-                >
-                  <FaCheck size={18} />
-                  {action === "create" ? "Submit" : "Edit"}
-                </Button>
+                <DialogTrigger asChild>
+                  <Button
+                    isLoading={form.formState.isSubmitting}
+                    spinner={<Loading_spinner />}
+                    type="submit"
+                    className="mt-1 bg-primary rounded-lg flex text-[16px] flex-row gap-3 text-white px-8 h-[48px] "
+                  >
+                    {!form.formState.isSubmitting && <FaCheck size={18} />}
+                    {action === "create" ? "Submit" : "Edit"}
+                  </Button>
+                </DialogTrigger>
               </div>
             </form>
           </Form>

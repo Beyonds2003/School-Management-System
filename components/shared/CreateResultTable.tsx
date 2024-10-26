@@ -1,14 +1,27 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Table, TableBody, TableHead, TableRow } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import { FaCheck, FaMinus, FaPlus, FaSearch } from "react-icons/fa";
 import CreateResultTableRow from "./CreateResultTableRow";
+import { Button } from "@nextui-org/react";
+import { backend_url } from "@/lib/constant";
+import { useRouter } from "next/navigation";
 
-const subjects = ["English", "Math", "Be", "Dld", "Dc", "Web", "C++"];
+type Props = {
+  examId: string | undefined;
+  students: {
+    studentId: string;
+    studentName: string;
+    studentRollNum: number;
+  }[];
+  subjects: {
+    subjectId: string;
+    subjectName: string;
+  }[];
+};
 
-const CreateResultTable = () => {
-  const [tableRowCount, setTableRowCount] = useState<number>(1);
+const CreateResultTable = ({ examId, students, subjects }: Props) => {
+  const router = useRouter();
+  const [tableRowCount, setTableRowCount] = useState<number>(students.length);
   const [validTableRowCount, setValidTableRowCount] = useState<number>(0);
   const [resultData, setResultData] = useState(
     new Array(tableRowCount).fill({}),
@@ -20,86 +33,68 @@ const CreateResultTable = () => {
     false: tableRowCount,
   });
 
-  const handleTableRowPlus = () => {
-    setTableRowCount(tableRowCount + 1);
-  };
-
-  const handleTableRowMinus = () => {
-    if (tableRowCount > 1) {
-      setTableRowCount(tableRowCount - 1);
-    }
-  };
-
   useEffect(() => {
     if (tableRowCount > 0) {
-      // Create new array
-      const newResultData = new Array(tableRowCount).fill({});
-
-      // Copy old array data tp new array
-      for (let i = 0; i < resultData.length; i++) {
-        newResultData[i] = resultData[i];
-      }
-
-      setResultData(newResultData);
-
       setCheckTableRowValid({
         false: tableRowCount - validTableRowCount,
       });
     }
   }, [tableRowCount]);
 
+  const handleResultSubmit = async () => {
+    try {
+      const res = await fetch(`${backend_url}/result`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          examId,
+          data: resultData,
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+      router.push("/teacher/result");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const tableHeadStyle = "table-head text-base text-black font-semibold";
 
   return (
     <div className="">
-      {/* Result */}
-      <div className="flex flex-row items-end justify-between mb-6">
-        <Button className=" flex flex-row items-center gap-2 border-primary border-[3px] text-primary font-semibold p-3 bg-white rounded-md h-[44px] px-4 hover:bg-gray-100">
-          <FaSearch size={18} className="" />
-          Search
+      {/* Submit */}
+      <div className="flex justify-end mb-4 mt-[-85px]">
+        <Button
+          disabled={checkTableRowValid.false !== 0}
+          onClick={handleResultSubmit}
+          type="submit"
+          className="mt-1 bg-primary rounded-lg disabled:bg-primary/50 flex text-[16px] flex-row gap-3 text-white px-8 h-[48px] "
+        >
+          Submit
         </Button>
-        <div className="flex flex-row items-center gap-8">
-          {/* Row Count Button */}
-          <div className="flex flex-row items-center gap-3">
-            <p className="text-lg font-semibold">Add Row : </p>
-            <Button
-              onClick={handleTableRowMinus}
-              className="bg-white p-3 shadow-gray-300 shadow-sm rounded-full hover:bg-gray-100"
-            >
-              <FaMinus size={14} />
-            </Button>
-            <p className="mx-2 text-lg font-semibold">{tableRowCount}</p>
-            <Button
-              onClick={handleTableRowPlus}
-              className="bg-white p-3 shadow-gray-300 shadow-sm rounded-full hover:bg-gray-100"
-            >
-              <FaPlus size={15} />
-            </Button>
-          </div>
-          <Button
-            disabled={checkTableRowValid["false"] !== 0}
-            onClick={() => console.log(resultData)}
-            className="max-w-[200px] px-4 h-[44px] flex flex-row items-center gap-3 bg-primary text-white font-semibold p-[13px] rounded-md text-lg"
-          >
-            <FaCheck size={18} />
-            Submit
-          </Button>
-        </div>
       </div>
+
+      {/* Result */}
       <Table className="w-full">
         <TableBody>
           <TableRow className="bg-blue-100 hover:bg-blue-100">
             <TableHead className={tableHeadStyle}>S/N</TableHead>
             <TableHead className={tableHeadStyle}>Name</TableHead>
             <TableHead className={tableHeadStyle}>Roll No</TableHead>
-            {subjects.map((item, index) => (
-              <TableHead key={index} className={tableHeadStyle}>
-                {item}
+            {subjects.map((item) => (
+              <TableHead key={item.subjectId} className={tableHeadStyle}>
+                {item.subjectName}
               </TableHead>
             ))}
           </TableRow>
-          {new Array(tableRowCount).fill(0).map((_, index) => (
+          {students.map((student, index) => (
             <CreateResultTableRow
+              student={student}
+              subjects={subjects}
               setCheckTableRowValid={setCheckTableRowValid}
               setValidTableRowCount={setValidTableRowCount}
               setResultData={setResultData}

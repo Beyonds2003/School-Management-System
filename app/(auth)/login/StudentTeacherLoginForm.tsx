@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import {
   Form,
@@ -14,25 +14,42 @@ import { studentTeacherLoginForm } from "@/lib/formSchema";
 import { z } from "zod";
 import { Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
+import { backend_url } from "@/lib/constant";
+import Loading_spinner from "@/components/ui/loading_spinner";
 
 const StudentTeacherLoginForm = ({ role }: { role: "teacher" | "student" }) => {
   const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
+
   // 1. Define student login form.
   const form = useForm<z.infer<typeof studentTeacherLoginForm>>({
     resolver: zodResolver(studentTeacherLoginForm),
   });
 
   // 2. Handle form submission.
-  function onSubmit(values: z.infer<typeof studentTeacherLoginForm>) {
-    if (role === "teacher") {
-      // Do Teacher Request
-      router.push("/teacher");
-    } else {
-      // Do Student Request
-      router.push("/student");
+  async function onSubmit(values: z.infer<typeof studentTeacherLoginForm>) {
+    const { email, password } = values;
+    try {
+      const res = await fetch(`${backend_url}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password, role }),
+        credentials: "include",
+      });
+      const data = await res.json();
+      if (res.ok) {
+        // Redirect to the appropriate page based on role
+        router.push(`/${role}`);
+      } else {
+        // Handle error (e.g., unauthorized, incorrect password)
+        setError(data.message || "Login failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setError("An unexpected error occurred. Please try again later.");
     }
-
-    console.log(values);
   }
 
   return (
@@ -90,10 +107,12 @@ const StudentTeacherLoginForm = ({ role }: { role: "teacher" | "student" }) => {
           />
           <div className="flex justify-end">
             <Button
+              isLoading={form.formState.isSubmitting}
+              spinner={<Loading_spinner />}
               type="submit"
               className="mt-1 flex text-[16px] flex-row gap-3 text-white bg-primary rounded-lg px-8 h-[48px]"
             >
-              <FaCheck size={18} />
+              {!form.formState.isSubmitting && <FaCheck size={18} />}
               Login
             </Button>
           </div>
@@ -104,6 +123,7 @@ const StudentTeacherLoginForm = ({ role }: { role: "teacher" | "student" }) => {
         className="absolute top-0 left-0 right-[0px] bg-primary h-44"
         style={{ borderRadius: "0 0 300px 0" }}
       />
+      {error && <p className="text-red-500 pb-5">{error}</p>}
     </article>
   );
 };

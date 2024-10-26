@@ -57,3 +57,17 @@ export const convertToGrades = (value: number) => {
   };
   return valueMapping[value];
 };
+
+export function getUniqueSubjectsAndCodes(timetableData: any) {
+  const subjectMap = new Map();
+
+  timetableData.forEach((entry: any) => {
+    entry.subjects.forEach((subject: any) => {
+      if (!subjectMap.has(subject.subject)) {
+        subjectMap.set(subject.subject, subject.code);
+      }
+    });
+  });
+
+  return Array.from(subjectMap, ([subject, code]) => ({ subject, code }));
+}

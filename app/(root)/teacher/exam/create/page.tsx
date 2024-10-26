@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@nextui-org/react";
 import {
   Form,
   FormControl,
@@ -21,6 +21,8 @@ import {
 } from "@/components/ui/select";
 import { FaCheck } from "react-icons/fa";
 import { DatePicker } from "@/components/ui/date-picker";
+import Loading_spinner from "@/components/ui/loading_spinner";
+import { backend_url } from "@/lib/constant";
 
 const page = () => {
   // 1. Define create exam form.
@@ -29,9 +31,34 @@ const page = () => {
   });
 
   // 2. Handle form submission.
-  function onSubmit(values: z.infer<typeof createExamFormSchema>) {
-    // Do something with the form values.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof createExamFormSchema>) {
+    try {
+      const res = await fetch(`${backend_url}/exam`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          ...values,
+          year: +values.year,
+          term: +values.term,
+        }),
+      });
+      const data = await res.json();
+      form.reset({
+        name: "",
+        year: undefined,
+        term: undefined,
+        major: undefined,
+        description: "",
+        date: undefined,
+        time: "",
+        examType: undefined,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -137,9 +164,16 @@ const page = () => {
                         Year
                       </FormLabel>
                       <FormControl>
-                        <Select onValueChange={field.onChange} {...field}>
+                        <Select
+                          value={field.value}
+                          onValueChange={field.onChange}
+                        >
                           <SelectTrigger className="h-[45px] focus:ring-0 ring-0 border-[2px] border-gray-200">
-                            <SelectValue placeholder="Choose Year" />
+                            {field.value ? (
+                              <SelectValue placeholder="Choose Year" />
+                            ) : (
+                              "Choose Year"
+                            )}
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="1">1 Year</SelectItem>
@@ -164,13 +198,20 @@ const page = () => {
                         Term
                       </FormLabel>
                       <FormControl>
-                        <Select onValueChange={field.onChange} {...field}>
+                        <Select
+                          onValueChange={field.onChange}
+                          value={field.value}
+                        >
                           <SelectTrigger className=" h-[45px] focus:ring-0 ring-0 border-[2px] border-gray-200">
-                            <SelectValue placeholder="Choose Term" />
+                            {field.value ? (
+                              <SelectValue placeholder="Choose Term" />
+                            ) : (
+                              "Choose Term"
+                            )}
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="First">First Term</SelectItem>
-                            <SelectItem value="Second">Second Term</SelectItem>
+                            <SelectItem value="1">First Term</SelectItem>
+                            <SelectItem value="2">Second Term</SelectItem>
                           </SelectContent>
                         </Select>
                       </FormControl>
@@ -187,23 +228,31 @@ const page = () => {
                         Major
                       </FormLabel>
                       <FormControl>
-                        <Select onValueChange={field.onChange} {...field}>
+                        <Select
+                          onValueChange={field.onChange}
+                          value={field.value}
+                        >
                           <SelectTrigger className=" h-[45px] focus:ring-0 ring-0 border-[2px] border-gray-200">
-                            <SelectValue placeholder="Choose Major" />
+                            {field.value ? (
+                              <SelectValue placeholder="Choose Major" />
+                            ) : (
+                              "Choose Major"
+                            )}
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="It">It</SelectItem>
-                            <SelectItem value="Civil">Civil</SelectItem>
-                            <SelectItem value="Archi">Archi</SelectItem>
-                            <SelectItem value="Ep">Ep</SelectItem>
-                            <SelectItem value="Ec">Ec</SelectItem>
-                            <SelectItem value="Mc">Mc</SelectItem>
+                            <SelectItem value="it">It</SelectItem>
+                            <SelectItem value="civil">Civil</SelectItem>
+                            <SelectItem value="archi">Archi</SelectItem>
+                            <SelectItem value="ep">Ep</SelectItem>
+                            <SelectItem value="ec">Ec</SelectItem>
+                            <SelectItem value="mc">Mc</SelectItem>
                           </SelectContent>
                         </Select>
                       </FormControl>
                     </FormItem>
                   )}
                 />
+
                 {/* Exam Type */}
                 <FormField
                   control={form.control}
@@ -214,14 +263,21 @@ const page = () => {
                         Exam
                       </FormLabel>
                       <FormControl>
-                        <Select onValueChange={field.onChange} {...field}>
+                        <Select
+                          onValueChange={field.onChange}
+                          value={field.value}
+                        >
                           <SelectTrigger className=" h-[45px] focus:ring-0 ring-0 border-[2px] border-gray-200">
-                            <SelectValue placeholder="Choose Exam Type" />
+                            {field.value ? (
+                              <SelectValue placeholder="Choose Exam" />
+                            ) : (
+                              "Choose Exam"
+                            )}
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="Final">Final</SelectItem>
-                            <SelectItem value="Tutorial">Tutorial</SelectItem>
-                            <SelectItem value="Assignment">
+                            <SelectItem value="final">Final</SelectItem>
+                            <SelectItem value="tutorial">Tutorial</SelectItem>
+                            <SelectItem value="assignment">
                               Assignment
                             </SelectItem>
                           </SelectContent>
@@ -233,10 +289,12 @@ const page = () => {
               </div>
               <div className="flex justify-end">
                 <Button
+                  isLoading={form.formState.isSubmitting}
+                  spinner={<Loading_spinner />}
                   type="submit"
-                  className="mt-1 flex text-[16px] flex-row gap-3 text-white px-8 h-[48px] "
+                  className="mt-1 bg-primary rounded-lg flex text-[16px] flex-row gap-3 text-white px-8 h-[48px] "
                 >
-                  <FaCheck size={18} />
+                  {!form.formState.isSubmitting && <FaCheck size={18} />}
                   Submit
                 </Button>
               </div>

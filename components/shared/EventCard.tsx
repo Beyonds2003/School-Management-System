@@ -14,16 +14,35 @@ import {
 import EventCreateDialog from "./EventCreateDialog";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { LuTrash2 } from "react-icons/lu";
+import { backend_url } from "@/lib/constant";
+import { useRouter } from "next/navigation";
 
 type Props = {
+  id: string;
   title: string;
+  description: string;
   date: Date;
   time: string;
   role: string;
 };
 
-const EventCard = ({ title, date, time, role }: Props) => {
+const EventCard = ({ id, title, description, date, time, role }: Props) => {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
+
+  const handleEventDelete = async () => {
+    const res = await fetch(`${backend_url}/event/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    const data = await res.json();
+    console.log("Delete Successful", data);
+    router.refresh();
+  };
+
   return (
     <article className="bg-gray-200 shadow-gray-300 shadow-sm p-5 rounded-lg">
       <Dialog
@@ -37,8 +56,11 @@ const EventCard = ({ title, date, time, role }: Props) => {
       >
         <Dropdown>
           <div className=" flex flex-row justify-between items-start">
-            <div className="flex flex-col space-y-2">
-              <h2 className="text-base font-semibold">{title}</h2>
+            <div className="flex flex-col ">
+              <h2 className="text-lg font-semibold ">{title}</h2>
+              <p className="text-base text-gray-500 mt-1 mb-3 font-normal ">
+                {description}
+              </p>
               <div className="flex flex-col gap-2">
                 <div className="flex flex-row items-center gap-2">
                   <RxCalendar size={17} />
@@ -74,7 +96,10 @@ const EventCard = ({ title, date, time, role }: Props) => {
               </DialogTrigger>
             </DropdownItem>
             <DropdownItem key="delete" className="text-danger" color="danger">
-              <button className="flex flex-row gap-4 items-center text-red-500">
+              <button
+                onClick={handleEventDelete}
+                className="flex flex-row gap-4 items-center text-red-500"
+              >
                 <LuTrash2 size={20} />
                 Delete event
               </button>
@@ -82,9 +107,10 @@ const EventCard = ({ title, date, time, role }: Props) => {
           </DropdownMenu>
         </Dropdown>
         <EventCreateDialog
+          id={id}
           action="edit"
           name={title}
-          descritption=""
+          descritption={description}
           date={date}
           time={time}
         />

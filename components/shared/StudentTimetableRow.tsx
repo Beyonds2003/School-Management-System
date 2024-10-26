@@ -5,18 +5,22 @@ import { Sheet, SheetTrigger } from "../ui/sheet";
 import EditTimetableRow from "./EditTimetableRow";
 import { majorColor } from "@/lib/constant";
 import { cn } from "@/lib/utils";
+import { getSubjectsResponse } from "@/lib/responseType";
 
 type Props = {
   time: string;
   year: number;
   term: string;
-  majors: {
+
+  subjects: {
+    timetable_row_id: string;
     id: number;
     day: string;
     subject: string;
     code: string;
     status: string;
   }[];
+  timetableSubject: getSubjectsResponse;
   day: number;
   show: "Day" | "Week";
   role: "teacher" | "student" | "admin";
@@ -26,7 +30,8 @@ const StudentTimetableRow = ({
   time,
   year,
   term,
-  majors,
+  subjects,
+  timetableSubject,
   day,
   show,
   role,
@@ -38,9 +43,16 @@ const StudentTimetableRow = ({
       <TableCell className="table-des w-[89px]">{time}</TableCell>
       {show === "Week" ? (
         <>
-          {majors.map((major, index) => (
-            <Sheet key={major.id}>
-              <TableCellMajor role={role} major={major} time={time} day={day} />
+          {subjects.map((major, index) => (
+            <Sheet key={major.timetable_row_id + index}>
+              <TableCellMajor
+                timetableSubject={timetableSubject}
+                id={major.id}
+                role={role}
+                major={major}
+                time={time}
+                day={day}
+              />
             </Sheet>
           ))}
         </>
@@ -48,11 +60,11 @@ const StudentTimetableRow = ({
         <TableCell colSpan={6} className={`table-des-nb text-start `}>
           <div
             className={cn(
-              `shadow-gray-400 shadow-sm p-4 rounded-md ${majorColor[majors[day - 1].subject as keyof typeof majorColor]}`,
+              `shadow-gray-400 shadow-sm p-4 rounded-md ${majorColor[subjects[day - 1].subject as keyof typeof majorColor]}`,
             )}
           >
-            <p className="font-[700] text-base">{majors[day - 1].subject}</p>
-            <p className="text-xs mt-[2px]">{majors[day - 1].code}</p>
+            <p className="font-[700] text-base">{subjects[day - 1].subject}</p>
+            <p className="text-xs mt-[2px]">{subjects[day - 1].code}</p>
           </div>
         </TableCell>
       )}
@@ -62,13 +74,20 @@ const StudentTimetableRow = ({
 
 export default StudentTimetableRow;
 
-const TableCellMajor = ({ role, major, time, day }: any) => {
+const TableCellMajor = ({
+  id,
+  timetableSubject,
+  role,
+  major,
+  time,
+  day,
+}: any) => {
   const [subject, setSubject] = React.useState<string>(major.subject);
   const [code, setCode] = React.useState<string>(major.code);
 
   return (
     <TableCell
-      className={`table-des p-0 text-center min-w-[105px] hover:bg-gray-100 ${role === "teacher" ? "cursor-pointer" : ""}`}
+      className={`table-des ${major.status === "absent" ? "bg-red-200" : "hover:bg-gray-100"}  p-0 text-center min-w-[105px]  ${role === "teacher" ? "cursor-pointer" : ""}`}
     >
       {role === "teacher" ? (
         <SheetTrigger asChild>
@@ -84,11 +103,14 @@ const TableCellMajor = ({ role, major, time, day }: any) => {
         </div>
       )}
       <EditTimetableRow
+        index={id}
         major={major}
         time={time}
         day={day}
+        timetableSubject={timetableSubject}
         setSubject={setSubject}
         setCode={setCode}
+        action={"edit"}
       />
     </TableCell>
   );

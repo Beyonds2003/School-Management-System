@@ -1,8 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { getUserRole } from "./home/Test";
 
 const HomePageNavbar = () => {
+  const userRole = getUserRole();
+
   return (
     <nav
       style={{ background: "transparent" }}
@@ -21,12 +24,21 @@ const HomePageNavbar = () => {
             <p className="font-semibold text-2xl mt-[-4px]">University</p>
           </div>
         </div>
-        <Link
-          href="/login"
-          className="mx-4 bg-white text-black text-lg font-semibold p-2 px-6 rounded-lg"
-        >
-          Login
-        </Link>
+        {userRole !== null ? (
+          <Link
+            href={`${userRole}`}
+            className="mx-4 bg-white text-black text-lg font-semibold p-2 px-6 rounded-lg"
+          >
+            Dashboard
+          </Link>
+        ) : (
+          <Link
+            href="/login"
+            className="mx-4 bg-white text-black text-lg font-semibold p-2 px-6 rounded-lg"
+          >
+            Login
+          </Link>
+        )}
       </div>
     </nav>
   );

@@ -1,30 +1,53 @@
 import EventCalander from "@/components/shared/EventCalander";
-import React from "react";
-import EventCard from "@/components/shared/EventCard";
+import React, { Suspense } from "react";
 import StudentCard from "@/components/shared/StudentCard";
-import StudentTimetable from "@/components/shared/StudentTimetable";
 import EventCardContainer from "@/components/shared/EventCardContainer";
+import Timetable from "@/components/shared/Timetable";
+import { getUserData } from "@/components/shared/home/Test";
+import { backend_url } from "@/lib/constant";
+import { headers } from "next/headers";
+import { getOneStudentResponse } from "@/lib/responseType";
 
-const Student = () => {
+const getStudentData = async (id: string): Promise<getOneStudentResponse> => {
+  const res = await fetch(`${backend_url}/student/${id}`, {
+    method: "GET",
+    headers: headers(),
+  });
+  const data = await res.json();
+  return data;
+};
+
+const Student = async () => {
+  const userData = getUserData("student");
+
+  const student = await getStudentData(userData.id);
+
   return (
     <main className="p-6 bg-gray-100">
       <div className=" flex flex-row">
         <section className=" w-[74%] max-[1400px]:w-full h-full pr-5">
           {/* Student Card */}
           <StudentCard
-            id={1}
-            image=""
-            name="John Doe"
-            year={1}
-            major="It"
-            term="Second"
-            gender="Male"
+            id={student.id}
+            image={student.image}
+            name={student.name}
+            year={student.year}
+            major={student.major}
+            term={student.term}
+            gender={student.gender}
           />
 
           {/* Timeline Table */}
           <article className="mt-6 p-6 bg-white shadow-gray-500 shadow-sm rounded-lg">
             <p className=" text-2xl font-semibold">Timetable</p>
-            <StudentTimetable role={"student"} />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Timetable
+                year={String(student.year)}
+                term={String(student.term)}
+                major={student.major}
+                role={"student"}
+              />
+            </Suspense>
           </article>
 
           {/* Event Remainder Card */}
@@ -50,7 +73,7 @@ const Student = () => {
           </article>
 
           {/* Event Card */}
-          <EventCardContainer />
+          <EventCardContainer role="student" />
         </section>
       </div>
     </main>

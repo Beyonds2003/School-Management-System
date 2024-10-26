@@ -1,8 +1,7 @@
-"use client";
 import HomePageFooter from "@/components/shared/HomePageFooter";
 import HomePageNavbar from "@/components/shared/HomePageNavbar";
-import FeatureSection from "./FeatureSection";
-import FeatureSectionTwo from "./FeatureSectionTwo";
+import FeatureSection from "../../components/shared/home/FeatureSection";
+import FeatureSectionTwo from "../../components/shared/home/FeatureSectionTwo";
 import FirstSection from "@/components/shared/home/FirstSection";
 import FourthSection from "@/components/shared/home/FourthSection";
 import FifthSection from "@/components/shared/home/FifthSection";

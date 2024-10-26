@@ -11,10 +11,18 @@ export const createStudentFormSchema = z.object({
     .min(1, { message: "Password is required" })
     .min(6, { message: "Password must be at least 6 characters" }),
   year: z.enum(["1", "2", "3", "4", "5", "6"]),
-  term: z.enum(["First", "Second"]),
-  rollNum: z.number(),
-  major: z.enum(["It", "Civil", "Archi", "Ep", "Ec", "Mc"]),
-  gender: z.enum(["Male", "Female"]),
+  term: z.enum(["1", "2"]),
+  rollNum: z.coerce.number(),
+  major: z.enum(["it", "civil", "archi", "ep", "ec", "mc"]),
+  gender: z.enum(["male", "female"]),
+});
+
+export const createSubjectFormSchema = z.object({
+  name: z.string().min(1, { message: "Name is required" }),
+  code: z.string().min(1, { message: "Code is required" }),
+  year: z.enum(["1", "2", "3", "4", "5", "6"]),
+  term: z.enum(["1", "2"]),
+  major: z.enum(["it", "civil", "archi", "ep", "ec", "mc"]),
 });
 
 export const createTeacherFormSchema = z.object({
@@ -27,11 +35,15 @@ export const createTeacherFormSchema = z.object({
     .string()
     .min(1, { message: "Password is required" })
     .min(6, { message: "Password must be at least 6 characters" }),
-  major: z.enum(["It", "Civil", "Archi", "Ep", "Ec", "Mc"]),
-  subjects: z.array(z.any()).nonempty(),
-  teachYear: z.array(z.any()).nonempty(),
-  gender: z.enum(["Male", "Female"]),
+  major: z.enum(["it", "civil", "archi", "ep", "ec", "mc"]),
+  gender: z.enum(["male", "female"]),
   role: z.enum(["teacher", "admin"]).default("teacher"),
+});
+
+export const createTeacherSubjectFormSchema = z.object({
+  year: z.enum(["1", "2", "3", "4", "5", "6"]),
+  term: z.enum(["1", "2"]),
+  subjects: z.array(z.any()).nonempty(),
 });
 
 export const editTimetableFormSchema = z.object({
@@ -46,20 +58,17 @@ export const editTimetableFormSchema = z.object({
 export const createExamFormSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
   year: z.enum(["1", "2", "3", "4", "5", "6"]),
-  term: z.enum(["First", "Second"]),
-  major: z.enum(["It", "Civil", "Archi", "Ep", "Ec", "Mc"]),
-  description: z.string().max(200),
+  term: z.enum(["1", "2"]),
+  major: z.enum(["it", "civil", "archi", "ep", "ec", "mc"]),
+  description: z.string().max(1000),
   date: z.date(),
-  time: z
-    .string()
-    .min(1, { message: "Time is required" })
-    .max(10, { message: "Time is invalid" }),
-  examType: z.enum(["Final", "Tutorial", "Assignment"]),
+  time: z.string().min(1),
+  examType: z.enum(["final", "tutorial", "assignment"]),
 });
 
 export const createEventFormSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
-  description: z.string().min(20).max(200),
+  description: z.string(),
   date: z.date(),
   time: z.string().min(1, { message: "Time is required" }),
 });

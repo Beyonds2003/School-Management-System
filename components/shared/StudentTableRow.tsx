@@ -1,5 +1,5 @@
 import React from "react";
-import { TableCell, TableRow } from "@/components/ui/table";
+import { TableRow, TableCell } from "@nextui-org/react";
 import ProfileImage from "./ProfileImage";
 
 type Props = {

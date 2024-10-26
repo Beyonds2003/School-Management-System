@@ -1,71 +1,115 @@
 import React from "react";
+import CreateStudentTimetable from "@/components/shared/CreateStudentTimetable";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import StudentTimetable from "@/components/shared/StudentTimetable";
-import { FaCheck } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
+  backend_url,
+  emptyTimetableData,
+  TimetableDataType,
+} from "@/lib/constant";
+import TimetableSelect from "@/components/shared/TimetableSelect";
+import { getUserData } from "@/components/shared/home/Test";
+import { redirect } from "next/navigation";
+import { headers } from "next/headers";
+import { getSubjectsResponse } from "@/lib/responseType";
 
-const page = () => {
+const getTimetable = async ({
+  year,
+  term,
+  major,
+}: {
+  year: string | undefined;
+  term: string | undefined;
+  major: string | undefined;
+}): Promise<{ timetable: TimetableDataType[] | [] }> => {
+  const res = await fetch(
+    `${backend_url}/timetable?year=${year}&term=${term}&major=${major}`,
+    {
+      method: "GET",
+      cache: "no-cache",
+      headers: headers(),
+    },
+  );
+  if (!res.ok) {
+    redirect("/login");
+  }
+  const data = await res.json();
+  return data;
+};
+
+const getSubjects = async ({
+  year,
+  term,
+  major,
+}: {
+  year: string | undefined;
+  term: string | undefined;
+  major: string | undefined;
+}): Promise<getSubjectsResponse> => {
+  const res = await fetch(
+    `${backend_url}/subject?year=${year}&term=${term}&major=${major}&free=${true}`,
+    {
+      method: "GET",
+      cache: "no-cache",
+      headers: headers(),
+    },
+  );
+  const data = await res.json();
+  return data;
+};
+
+const page = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) => {
+  const { year, term, major } = searchParams;
+
+  const userData = getUserData("teacher");
+
+  const subjects = await getSubjects({
+    year,
+    term,
+    major,
+  });
+
+  let data;
+  if (year && term && major) {
+    data = await getTimetable({
+      year,
+      term,
+      major,
+    });
+  }
+
+  console.log("Timetable: ", data?.timetable);
+
   return (
     <main className="p-4">
       {/* Timetable Title */}
+      {/* Timetable Title */}
       <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-4">
         <div className="flex flex-row items-center gap-4 mr-4">
-          <h2 className="text-2xl font-semibold">Create Timetable</h2>
+          <p className="text-2xl font-semibold">Create Timetable</p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4  gap-4">
-          <Select>
-            <SelectTrigger className=" h-[50px] w-[140px] focus:ring-0 ring-0 shadow-sm shadow-gray-400 ">
-              <SelectValue placeholder="Major" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="it">It</SelectItem>
-              <SelectItem value="civil">Civil</SelectItem>
-              <SelectItem value="archi">Archi</SelectItem>
-              <SelectItem value="ep">Ep</SelectItem>
-              <SelectItem value="ec">Ec</SelectItem>
-              <SelectItem value="mc">Mc</SelectItem>
-            </SelectContent>
-          </Select>
 
-          <Select>
-            <SelectTrigger className="h-[50px] w-[140px]  focus:ring-0 ring-0 shadow-sm shadow-gray-200 ">
-              <SelectValue placeholder="Year" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="1">1 Year</SelectItem>
-              <SelectItem value="2">2 Year</SelectItem>
-            </SelectContent>
-          </Select>
-          <Select>
-            <SelectTrigger className=" h-[50px] w-[140px] focus:ring-0 ring-0 shadow-sm shadow-gray-200 ">
-              <SelectValue placeholder="Term" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="first term">First</SelectItem>
-              <SelectItem value="second term">Second</SelectItem>
-            </SelectContent>
-          </Select>
-          <div className="flex justify-end">
-            <Button
-              type="submit"
-              className="mt-1 flex text-[16px] flex-row gap-3 text-white px-8 h-[48px] "
-            >
-              <FaCheck size={18} />
-              Submit
-            </Button>
-          </div>
+        <div className="mt-4 ">
+          <TimetableSelect rootRoute="/teacher/timetable/create" />
         </div>
       </div>
 
-      {/* Timetable */}
-      <div className="p-2 mt-4">
-        <StudentTimetable role="teacher" />
+      <div className="mt-8">
+        {data?.timetable ? (
+          <div>
+            {data.timetable.length > 0 ? (
+              <p className="mt-32 flex flex-row items-center justify-center text-2xl ">
+                Timetable Already Exists
+              </p>
+            ) : (
+              <CreateStudentTimetable timetableSubject={subjects} />
+            )}
+          </div>
+        ) : (
+          <p></p>
+        )}
       </div>
     </main>
   );

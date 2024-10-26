@@ -1,19 +1,16 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { account_menu_items, menu_items, MenuItemType } from "@/lib/constant";
+import { account_menu_items, backend_url, menu_items } from "@/lib/constant";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { BiLogOut } from "react-icons/bi";
 
 const Menu = ({ role }: { role: "teacher" | "student" }) => {
   const pathname = usePathname();
-  const menu_position =
-    pathname.split("/")[2] === "dashboard" ? "" : pathname.split("/")[2];
-
-  console.log(menu_position);
 
   return (
-    <section className="fixed w-[300px] h-full bg-primary">
+    <aside className="fixed w-[300px] h-full bg-primary">
       {/* Menu Header */}
       <Link
         href="/"
@@ -41,15 +38,16 @@ const Menu = ({ role }: { role: "teacher" | "student" }) => {
           <p className="text-white font-thin text-sm">MENU</p>
           {menu_items.map((menu_item: any, index) => {
             return (
-              <>
+              <div key={index}>
                 {menu_item[role] && (
                   <Link
                     href={menu_item[role].link}
                     key={index}
-                    className={`menu-item-container ${pathname === menu_item[role].link
+                    className={`menu-item-container ${
+                      pathname === menu_item[role].link
                         ? "bg-white bg-opacity-10"
                         : ""
-                      }`}
+                    }`}
                   >
                     <div className="text-white flex flex-row items-center gap-3 ">
                       <div>{menu_item.icon}</div>
@@ -59,7 +57,7 @@ const Menu = ({ role }: { role: "teacher" | "student" }) => {
                     </div>
                   </Link>
                 )}
-              </>
+              </div>
             );
           })}
         </div>
@@ -79,9 +77,29 @@ const Menu = ({ role }: { role: "teacher" | "student" }) => {
               </div>
             </Link>
           ))}
+
+          {/* Logout */}
+          <button
+            onClick={async () => {
+              const res = await fetch(`${backend_url}/auth/logout`, {
+                method: "GET",
+                credentials: "include",
+              });
+              const data = await res.json();
+
+              console.log("Logout", data.success);
+              window.location.href = "/";
+            }}
+            className="menu-item-container w-full"
+          >
+            <div className="text-white flex flex-row items-center gap-3">
+              <BiLogOut size={25} />
+              <h3 className="font-semibold text-base">Logout</h3>
+            </div>
+          </button>
         </div>
       </div>
-    </section>
+    </aside>
   );
 };
 

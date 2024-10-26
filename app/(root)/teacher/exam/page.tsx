@@ -1,17 +1,51 @@
 import React from "react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { FaSearch } from "react-icons/fa";
 import ExamCard from "@/components/shared/ExamCard";
 import { FaPlus } from "react-icons/fa6";
 import Link from "next/link";
+import TimetableSelect from "@/components/shared/TimetableSelect";
+import { backend_url } from "@/lib/constant";
+import { getExamResponse } from "@/lib/responseType";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import { getUserData } from "@/components/shared/home/Test";
 
-const page = () => {
+const getExams = async ({
+  year = "2",
+  term = "2",
+  major = "it",
+}): Promise<getExamResponse> => {
+  const res = await fetch(
+    `${backend_url}/exam?year=${year}&term=${term}&major=${major}`,
+    {
+      method: "GET",
+      cache: "no-store",
+      headers: headers(),
+    },
+  );
+  if (!res.ok) {
+    redirect("/login");
+  }
+  const data = await res.json();
+  return data;
+};
+
+const page = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) => {
+  const userData = getUserData("teacher");
+
+  const { final, tutorial, assignment } = await getExams({
+    year: searchParams.year,
+    term: searchParams.term,
+    major: searchParams.major,
+  });
+
+  const year = searchParams.year ? searchParams.year : "2";
+  const term = searchParams.term ? searchParams.term : "2";
+  const major = searchParams.major ? searchParams.major : "it";
+
   return (
     <main className="p-4">
       {/* Timetable Title */}
@@ -19,57 +53,22 @@ const page = () => {
         <div className="flex flex-row items-center gap-4">
           <h2 className="text-2xl font-semibold">Exam</h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          <Select>
-            <SelectTrigger className=" h-[50px] focus:ring-0 ring-0 shadow-sm shadow-gray-400 ">
-              <SelectValue placeholder="Major" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="it">It</SelectItem>
-              <SelectItem value="civil">Civil</SelectItem>
-              <SelectItem value="archi">Archi</SelectItem>
-              <SelectItem value="ep">Ep</SelectItem>
-              <SelectItem value="ec">Ec</SelectItem>
-              <SelectItem value="mc">Mc</SelectItem>
-            </SelectContent>
-          </Select>
-
-          <Select>
-            <SelectTrigger className="h-[50px]  focus:ring-0 ring-0 shadow-sm shadow-gray-200 ">
-              <SelectValue placeholder="Year" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="1">1 Year</SelectItem>
-              <SelectItem value="2">2 Year</SelectItem>
-            </SelectContent>
-          </Select>
-          <Select>
-            <SelectTrigger className=" h-[50px] focus:ring-0 ring-0 shadow-sm shadow-gray-200 ">
-              <SelectValue placeholder="Term" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="first term">First</SelectItem>
-              <SelectItem value="second term">Second</SelectItem>
-            </SelectContent>
-          </Select>
-          <button className="search-button">
-            <FaSearch size={18} />
-            <p className="font-semibold">Search</p>
-          </button>
-        </div>
+        <TimetableSelect rootRoute="/teacher/exam" />
       </div>
 
       <div className="mt-8">
         {/* Guide */}
         <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4 justify-between ">
           <div>
-            <p className="font-semibold text-2xl">IT / 2 Year / 2 Term</p>
+            <p className="font-semibold text-2xl">
+              {major.toUpperCase()} / {year} Year / {term} Term
+            </p>
           </div>
           <Link
             href="/teacher/exam/create"
-            className="max-w-[200px] min-w-[175px] h-[49px] flex flex-row items-center gap-2 border-primary border-[3px] text-primary font-semibold p-3 rounded-md"
+            className=" h-[49px] flex flex-row items-center gap-2 border-primary border-[3px] text-primary font-semibold p-3 rounded-md"
           >
-            <FaPlus size={20} />
+            <FaPlus size={19} />
             Create Exam
           </Link>
         </div>
@@ -91,16 +90,19 @@ const page = () => {
               <p className=" text-2xl text-white font-semibold">Final Exam</p>
             </div>
             <div className="p-6 space-y-6  overflow-y-scroll no-scrollbar">
-              <ExamCard
-                title="English 1"
-                date="11 of October 2024"
-                time="2:00 - 4:00 PM"
-              />
-              <ExamCard
-                title="English 1"
-                date="11 of October 2024"
-                time="2:00 - 4:00 PM"
-              />
+              {final.map((item) => (
+                <ExamCard
+                  title={item.name}
+                  description={item.description}
+                  date={item.date}
+                  time={item.time}
+                />
+              ))}
+              {final.length === 0 && (
+                <div className="flex flex-col items-center justify-center h-full">
+                  <p className="text-2xl font-semibold mt-10">No Final</p>
+                </div>
+              )}
             </div>
           </article>
 
@@ -110,16 +112,19 @@ const page = () => {
               <p className=" text-2xl font-semibold">Tutorial</p>
             </div>
             <div className=" p-6 space-y-6 overflow-y-scroll no-scrollbar">
-              <ExamCard
-                title="English 1"
-                date="11 of October 2024"
-                time="2:00 - 4:00 PM"
-              />
-              <ExamCard
-                title="English 1"
-                date="11 of October 2024"
-                time="2:00 - 4:00 PM"
-              />
+              {tutorial.map((item) => (
+                <ExamCard
+                  title={item.name}
+                  description={item.description}
+                  date={item.date}
+                  time={item.time}
+                />
+              ))}
+              {tutorial.length === 0 && (
+                <div className="flex flex-col items-center justify-center h-full">
+                  <p className="text-2xl font-semibold mt-10">No Tutorial</p>
+                </div>
+              )}
             </div>
           </article>
 
@@ -129,16 +134,19 @@ const page = () => {
               <p className=" text-2xl font-semibold">Assignment</p>
             </div>
             <div className="p-6 space-y-6 overflow-y-scroll no-scrollbar">
-              <ExamCard
-                title="English 1"
-                date="11 of October 2024"
-                time="2:00 - 4:00 PM"
-              />
-              <ExamCard
-                title="English 1"
-                date="11 of October 2024"
-                time="2:00 - 4:00 PM"
-              />
+              {assignment.map((item) => (
+                <ExamCard
+                  title={item.name}
+                  description={item.description}
+                  date={item.date}
+                  time={item.time}
+                />
+              ))}
+              {assignment.length === 0 && (
+                <div className="flex flex-col items-center justify-center h-full">
+                  <p className="text-2xl font-semibold mt-10">No Assignment</p>
+                </div>
+              )}
             </div>
           </article>
         </div>
