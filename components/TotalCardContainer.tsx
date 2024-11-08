@@ -43,7 +43,7 @@ const TotalCardContainer = async ({ timelineLength }: { timelineLength: number }
 
 
   return (
-    <article className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3  gap-6">
+    <article className="mt-4 grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-6">
       {totalCardItems.map((item, index) => (
         <TotalCard
           key={index}
