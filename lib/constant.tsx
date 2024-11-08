@@ -10,7 +10,7 @@ import { BiLogOut } from "react-icons/bi";
 import { LuPenSquare } from "react-icons/lu";
 import { GrGroup } from "react-icons/gr";
 
-export const backend_url = "http://localhost:3001";
+export const backend_url = "https://refreshing-commitment-production.up.railway.app";
 
 export interface MenuItemType {
   name: string;
