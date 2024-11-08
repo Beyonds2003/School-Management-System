@@ -42,6 +42,7 @@ const page = async ({
     major: searchParams.major,
   });
 
+
   const year = searchParams.year ? searchParams.year : "2";
   const term = searchParams.term ? searchParams.term : "2";
   const major = searchParams.major ? searchParams.major : "it";

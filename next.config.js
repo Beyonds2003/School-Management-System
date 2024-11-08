@@ -4,7 +4,20 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ["image.petmd.com", "wallpapers.com", "hbtu.edu.mm"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'image.petmd.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'wallpapers.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'hbtu.edu.mm',
+      },
+    ],
   },
 };
 

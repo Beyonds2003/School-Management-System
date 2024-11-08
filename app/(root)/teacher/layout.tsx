@@ -3,6 +3,7 @@ import "../../globals.css";
 import { Inter } from "next/font/google";
 import Menu from "@/components/shared/Menu";
 import Navbar from "@/components/shared/Navbar";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
           <Navbar role="teacher" />
           {children}
         </div>
+        <Toaster />
       </body>
     </html>
   );

@@ -25,8 +25,10 @@ import {
 import { FaCheck } from "react-icons/fa";
 import { backend_url } from "@/lib/constant";
 import Loading_spinner from "@/components/ui/loading_spinner";
+import { useToast } from "@/hooks/use-toast";
 
 const page = () => {
+  const toast = useToast();
   // 1. Define create student form.
   const form = useForm<z.infer<typeof createSubjectFormSchema>>({
     resolver: zodResolver(createSubjectFormSchema),
@@ -59,6 +61,18 @@ const page = () => {
         term: undefined,
         major: undefined,
       });
+      if (res.status === 201) {
+        toast.toast({
+          title: "Success",
+          description: data.message,
+        });
+      } else {
+        toast.toast({
+          title: "Error",
+          description: data.message,
+          variant: "destructive",
+        });
+      }
     } catch (error) {
       console.error(error);
     }
@@ -222,9 +236,10 @@ const page = () => {
               <div className="flex justify-end">
                 <Button
                   isLoading={form.formState.isSubmitting}
+                  disabled={form.formState.isSubmitting}
                   spinner={<Loading_spinner />}
                   type="submit"
-                  className="mt-1 bg-primary rounded-lg flex text-[16px] flex-row gap-3 text-white px-8 h-[48px] "
+                  className="mt-1 disabled:bg-primary/50 bg-primary rounded-lg flex text-[16px] flex-row gap-3 text-white px-8 h-[48px] "
                 >
                   {!form.formState.isSubmitting && <FaCheck size={18} />}
                   Submit

@@ -5,7 +5,6 @@ import { getUserRole } from "./home/Test";
 
 const HomePageNavbar = () => {
   const userRole = getUserRole();
-
   return (
     <nav
       style={{ background: "transparent" }}

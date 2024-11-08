@@ -3,29 +3,45 @@ import { IoPeopleOutline } from "react-icons/io5";
 import { PiStudent } from "react-icons/pi";
 import { MdAccessTime } from "react-icons/md";
 import TotalCard from "./shared/TotalCard";
+import { backend_url } from "@/lib/constant";
 
-const totalCardItems = [
-  {
-    title: "Total Students",
-    value: 102,
-    icon: <IoPeopleOutline size={28} />,
-    bgColor: "bg-green-100",
-  },
-  {
-    title: "Total Teacher",
-    value: 40,
-    icon: <PiStudent size={28} />,
-    bgColor: "bg-pink-100",
-  },
-  {
-    title: "Total Timeline",
-    value: 5,
-    icon: <MdAccessTime size={28} />,
-    bgColor: "bg-red-100",
-  },
-];
+const getTotalSAT = async (): Promise<{
+  student_total: number;
+  teacher_total: number;
+}> => {
+  const res = await fetch(`${backend_url}/totalSAT`, {
+    method: "GET",
+    cache: "no-store"
+  });
+  const data = await res.json()
+  return data
+}
 
-const TotalCardContainer = () => {
+const TotalCardContainer = async ({ timelineLength }: { timelineLength: number }) => {
+
+  const totalSAT = await getTotalSAT()
+  const totalCardItems = [
+    {
+      title: "Total Students",
+      value: totalSAT.student_total,
+      icon: <IoPeopleOutline size={28} />,
+      bgColor: "bg-green-100",
+    },
+    {
+      title: "Total Teacher",
+      value: totalSAT.teacher_total,
+      icon: <PiStudent size={28} />,
+      bgColor: "bg-pink-100",
+    },
+    {
+      title: "Total Timeline",
+      value: timelineLength,
+      icon: <MdAccessTime size={28} />,
+      bgColor: "bg-red-100",
+    },
+  ]
+
+
   return (
     <article className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3  gap-6">
       {totalCardItems.map((item, index) => (

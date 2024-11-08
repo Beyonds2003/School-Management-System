@@ -23,12 +23,14 @@ import { FaCheck } from "react-icons/fa";
 import { DatePicker } from "@/components/ui/date-picker";
 import Loading_spinner from "@/components/ui/loading_spinner";
 import { backend_url } from "@/lib/constant";
+import { useToast } from "@/hooks/use-toast";
 
 const page = () => {
   // 1. Define create exam form.
   const form = useForm<z.infer<typeof createExamFormSchema>>({
     resolver: zodResolver(createExamFormSchema),
   });
+  const toast = useToast();
 
   // 2. Handle form submission.
   async function onSubmit(values: z.infer<typeof createExamFormSchema>) {
@@ -56,8 +58,24 @@ const page = () => {
         time: "",
         examType: undefined,
       });
-    } catch (error) {
-      console.log(error);
+      if (res.status === 201) {
+        toast.toast({
+          title: "Success",
+          description: data.message,
+        });
+      } else {
+        toast.toast({
+          title: "Error",
+          description: data.message,
+          variant: "destructive",
+        });
+      }
+    } catch (error: any) {
+      toast.toast({
+        title: "Error",
+        description: error,
+        variant: "destructive",
+      });
     }
   }
 
@@ -165,7 +183,7 @@ const page = () => {
                       </FormLabel>
                       <FormControl>
                         <Select
-                          value={field.value}
+                          value={field.value || ""}
                           onValueChange={field.onChange}
                         >
                           <SelectTrigger className="h-[45px] focus:ring-0 ring-0 border-[2px] border-gray-200">
@@ -200,7 +218,7 @@ const page = () => {
                       <FormControl>
                         <Select
                           onValueChange={field.onChange}
-                          value={field.value}
+                          value={field.value || ""}
                         >
                           <SelectTrigger className=" h-[45px] focus:ring-0 ring-0 border-[2px] border-gray-200">
                             {field.value ? (
@@ -230,7 +248,7 @@ const page = () => {
                       <FormControl>
                         <Select
                           onValueChange={field.onChange}
-                          value={field.value}
+                          value={field.value || ""}
                         >
                           <SelectTrigger className=" h-[45px] focus:ring-0 ring-0 border-[2px] border-gray-200">
                             {field.value ? (
@@ -265,7 +283,7 @@ const page = () => {
                       <FormControl>
                         <Select
                           onValueChange={field.onChange}
-                          value={field.value}
+                          value={field.value || ""}
                         >
                           <SelectTrigger className=" h-[45px] focus:ring-0 ring-0 border-[2px] border-gray-200">
                             {field.value ? (
@@ -290,9 +308,10 @@ const page = () => {
               <div className="flex justify-end">
                 <Button
                   isLoading={form.formState.isSubmitting}
+                  disabled={form.formState.isSubmitting}
                   spinner={<Loading_spinner />}
                   type="submit"
-                  className="mt-1 bg-primary rounded-lg flex text-[16px] flex-row gap-3 text-white px-8 h-[48px] "
+                  className="mt-1 disabled:bg-primary/50 bg-primary rounded-lg flex text-[16px] flex-row gap-3 text-white px-8 h-[48px] "
                 >
                   {!form.formState.isSubmitting && <FaCheck size={18} />}
                   Submit

@@ -4,7 +4,6 @@ import FeatureSection from "../../components/shared/home/FeatureSection";
 import FeatureSectionTwo from "../../components/shared/home/FeatureSectionTwo";
 import FirstSection from "@/components/shared/home/FirstSection";
 import FourthSection from "@/components/shared/home/FourthSection";
-import FifthSection from "@/components/shared/home/FifthSection";
 
 export default function Home() {
   return (

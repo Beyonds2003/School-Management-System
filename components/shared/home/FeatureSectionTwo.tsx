@@ -8,7 +8,7 @@ const FeatureSectionTwo = () => {
   const [isHover, setIsHover] = useState<boolean>(false);
 
   return (
-    <section className="min-h-screen relative p-10">
+    <section className="h-auto relative p-10 pt-10 pb-20">
       <article
         className={`overflow-hidden bg-white rounded-xl  grid grid-cols-1  lg:grid-cols-[1fr_1fr]`}
       >

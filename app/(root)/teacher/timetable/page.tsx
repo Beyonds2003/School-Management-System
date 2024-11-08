@@ -9,7 +9,6 @@ const page = ({
   searchParams: { [key: string]: string | undefined };
 }) => {
   const userData = getUserData("teacher");
-
   return (
     <main className="p-4">
       {/* Timetable Title */}

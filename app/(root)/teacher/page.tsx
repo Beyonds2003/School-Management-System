@@ -1,5 +1,5 @@
 import EventCalander from "@/components/shared/EventCalander";
-import React from "react";
+import React, { Suspense } from "react";
 import TeacherTimelineTable from "@/components/shared/TeacherTimelineTable";
 import EventCardContainer from "@/components/shared/EventCardContainer";
 import { backend_url } from "@/lib/constant";
@@ -28,7 +28,9 @@ const Admin = async () => {
       <div className="flex flex-row">
         <section className=" w-[74%] max-[1350px]:w-full h-full pr-5">
           {/* Total Card */}
-          <TotalCardContainer />
+          <Suspense fallback={<div className="p-6 bg-white shadow-gray-500 shadow-sm rounded-lg max-w-[280px]">Loading...</div>}>
+            <TotalCardContainer timelineLength={data.length} />
+          </Suspense>
 
           {/* Timeline Table */}
           <article className="mt-6 overflow-x-scroll no-scrollbar  p-6 bg-white shadow-gray-500 shadow-sm rounded-lg">

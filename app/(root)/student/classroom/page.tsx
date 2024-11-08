@@ -74,7 +74,7 @@ const page = async () => {
     <main className="p-4 bg-gray-100">
       {/* Teachers Card */}
       <div className="p-4">
-        <h1 className="font-semibold text-2xl ml-1 mb-2">Teachers</h1>
+        <h1 className="font-semibold text-2xl ml-1 mb-4">Subjects & Teachers</h1>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
           {subjectAndTeacher.data.map((item, index) => (
             <SubjectCard

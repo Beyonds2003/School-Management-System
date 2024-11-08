@@ -3,56 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  .search-button {
-    @apply flex flex-row text-primary items-center gap-4 h-[48px] pl-4 border-[2px] border-primary rounded-lg px-6 shadow-sm shadow-gray-200 p-2;
-  }
-  /* Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
 
-  .addedSubjectLi {
-    font-size: 14px;
-    margin-left: 35px;
-    list-style-type: circle;
-    margin-bottom: 10px;
-  }
-
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-
-  .table-head {
-    @apply text-left font-semibold border-[1px] border-[#dddddd] p-4;
-  }
-
-  .table-des {
-    @apply text-left text-base border-[1px] border-[#dddddd] p-4;
-  }
-
-  .table-head-nb,
-  .table-des-nb {
-    @apply text-left border-[0px] border-[#dddddd] p-4;
-  }
-
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  .divider {
-    @apply bg-white w-full h-[1px];
-  }
-
-  .menu-item-container {
-    @apply flex flex-row items-center gap-5 px-5 py-4 cursor-pointer my-2 hover:bg-white hover:bg-opacity-10 rounded-lg;
-  }
-}
-
-@layer base {
-  :root {
+    :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -105,6 +57,53 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+  }
+
+  .search-button {
+    @apply flex flex-row text-primary items-center gap-4 h-[48px] pl-4 border-[2px] border-primary rounded-lg px-6 shadow-sm shadow-gray-200 p-2;
+  }
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .addedSubjectLi {
+    font-size: 14px;
+    margin-left: 35px;
+    list-style-type: circle;
+    margin-bottom: 10px;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .table-head {
+    @apply text-left font-semibold border-[1px] border-[#dddddd] p-4;
+  }
+
+  .table-des {
+    @apply text-left text-base border-[1px] border-[#dddddd] p-4;
+  }
+
+  .table-head-nb,
+  .table-des-nb {
+    @apply text-left border-[0px] border-[#dddddd] p-4;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  .divider {
+    @apply bg-white w-full h-[1px];
+  }
+
+  .menu-item-container {
+    @apply flex flex-row items-center gap-5 px-5 py-4 cursor-pointer my-2 hover:bg-white hover:bg-opacity-10 rounded-lg;
   }
 }
 
