@@ -14,15 +14,15 @@ const getTeachers = async (
   gender?: string,
   name?: string,
   page = 1,
-  limit = 10,
+  limit = 10
 ): Promise<getTeacherResponse> => {
   const res = await fetch(
     `${backend_url}/teacher?year=${year}&term=${term}&major=${major}&gender=${gender}&name=${name}&page=${page}&limit=${limit}`,
     {
       method: "GET",
       cache: "no-cache",
-      headers: headers(),
-    },
+      headers: new Headers(headers()),
+    }
   );
   if (!res.ok) {
     redirect("/login");
@@ -45,7 +45,7 @@ const page = async ({
     searchParams.gender,
     searchParams.q,
     1,
-    10,
+    10
   );
 
   return (

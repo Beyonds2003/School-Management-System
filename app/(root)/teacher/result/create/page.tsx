@@ -6,15 +6,15 @@ import { getStudnetsAndSubjectsResponse } from "@/lib/responseType";
 import { headers } from "next/headers";
 
 const getStudentAndSubjects = async (
-  examId: string | undefined,
+  examId: string | undefined
 ): Promise<getStudnetsAndSubjectsResponse> => {
   const res = await fetch(
     `${backend_url}/result/students&subjects?examId=${examId}`,
     {
       method: "GET",
       cache: "no-cache",
-      headers: headers(),
-    },
+      headers: new Headers(headers()),
+    }
   );
   const data = await res.json();
   return data;

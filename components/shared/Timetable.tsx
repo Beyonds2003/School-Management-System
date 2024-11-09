@@ -29,8 +29,8 @@ const getTimetable = async ({
     {
       method: "GET",
       cache: "no-cache",
-      headers: headers(),
-    },
+      headers: new Headers(headers()),
+    }
   );
   if (!res.ok) {
     redirect("/teacher/timetable");
@@ -53,8 +53,8 @@ const getSubjects = async ({
     {
       method: "GET",
       cache: "no-cache",
-      headers: headers(),
-    },
+      headers: new Headers(headers()),
+    }
   );
   const data = await res.json();
   return data;

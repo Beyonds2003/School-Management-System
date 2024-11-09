@@ -9,7 +9,7 @@ import React from "react";
 const getStudentData = async (id: string): Promise<getOneStudentResponse> => {
   const res = await fetch(`${backend_url}/student/${id}`, {
     method: "GET",
-    headers: headers(),
+    headers: new Headers(headers()),
   });
   const data = await res.json();
   return data;
@@ -29,8 +29,8 @@ const getExams = async ({
     {
       method: "GET",
       cache: "no-store",
-      headers: headers(),
-    },
+      headers: new Headers(headers()),
+    }
   );
   if (!res.ok) {
     redirect("/login");

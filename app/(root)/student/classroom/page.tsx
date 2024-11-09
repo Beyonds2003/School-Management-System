@@ -20,7 +20,7 @@ const getStudents = async (
     {
       method: "GET",
       cache: "no-cache",
-      headers: headers(),
+      headers: new Headers(headers()),
     },
   );
   const data = await res.json();
@@ -40,7 +40,7 @@ const getSubjectAndTeacher = async ({
     `${backend_url}/subject/contain-teacher?year=${year}&term=${term}&major=${major}`,
     {
       method: "GET",
-      headers: headers(),
+      headers: new Headers(headers()),
     },
   );
   const data = await res.json();
@@ -50,7 +50,7 @@ const getSubjectAndTeacher = async ({
 const getStudentData = async (id: string): Promise<getOneStudentResponse> => {
   const res = await fetch(`${backend_url}/student/${id}`, {
     method: "GET",
-    headers: headers(),
+    headers: new Headers(headers()),
   });
   const data = await res.json();
   return data;

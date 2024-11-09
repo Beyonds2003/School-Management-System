@@ -19,8 +19,8 @@ const getExams = async ({
     {
       method: "GET",
       cache: "no-store",
-      headers: headers(),
-    },
+      headers: new Headers(headers()),
+    }
   );
   if (!res.ok) {
     redirect("/login");
@@ -41,7 +41,6 @@ const page = async ({
     term: searchParams.term,
     major: searchParams.major,
   });
-
 
   const year = searchParams.year ? searchParams.year : "2";
   const term = searchParams.term ? searchParams.term : "2";

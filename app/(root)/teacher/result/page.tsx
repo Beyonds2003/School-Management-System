@@ -12,12 +12,12 @@ import { redirect } from "next/navigation";
 import { getUserData } from "@/components/shared/home/Test";
 
 const getResults = async (
-  examId: string | undefined,
+  examId: string | undefined
 ): Promise<getResultsResponse> => {
   const res = await fetch(`${backend_url}/result/${examId}`, {
     method: "GET",
     cache: "no-cache",
-    headers: headers(),
+    headers: new Headers(headers()),
   });
   if (!res.ok) {
     console.log("Status", res.status);

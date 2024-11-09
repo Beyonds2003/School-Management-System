@@ -19,8 +19,8 @@ const getSubjectAndTeacher = async ({
     `${backend_url}/subject/contain-teacher?year=${year}&term=${term}&major=${major}`,
     {
       method: "GET",
-      headers: headers(),
-    },
+      headers: new Headers(headers()),
+    }
   );
 
   const data = await res.json();
