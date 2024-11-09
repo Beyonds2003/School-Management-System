@@ -118,10 +118,11 @@ const StudentTeacherLoginForm = ({ role }: { role: "teacher" | "student" }) => {
           />
           <div className="flex justify-end">
             <Button
+              disabled={form.formState.isSubmitting}
               isLoading={form.formState.isSubmitting}
               spinner={<Loading_spinner />}
               type="submit"
-              className="mt-1 flex text-[16px] flex-row gap-3 text-white bg-primary rounded-lg px-8 h-[48px]"
+              className="mt-1 disabled:bg-primary/50 flex text-[16px] flex-row gap-3 text-white bg-primary rounded-lg px-8 h-[48px]"
             >
               {!form.formState.isSubmitting && <FaCheck size={18} />}
               Login
