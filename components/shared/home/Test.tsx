@@ -31,8 +31,6 @@ export const getUserData = (
 } => {
   const token = cookies().get("jwt");
 
-  console.log("Token", token, "env: ", JWT_SECRET_KEY);
-
   if (!token || !JWT_SECRET_KEY) {
     redirect("/login");
   }
