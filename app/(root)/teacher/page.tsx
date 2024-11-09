@@ -5,16 +5,14 @@ import EventCardContainer from "@/components/shared/EventCardContainer";
 import { backend_url } from "@/lib/constant";
 import { getTimetableRowData } from "@/lib/responseType";
 import TotalCardContainer from "@/components/TotalCardContainer";
-import { cookies, headers } from "next/headers";
+import { headers } from "next/headers";
 import { getUserData } from "@/components/shared/home/Test";
 
 const getTodayTimelne = async (id: string): Promise<getTimetableRowData> => {
   const res = await fetch(`${backend_url}/teacher/timeline/${id}`, {
     method: "GET",
     cache: "no-cache",
-    headers: {
-      Cookie: cookies().toString(),
-    },
+    headers: new Headers(headers()),
   });
   const data = await res.json();
   return data;
