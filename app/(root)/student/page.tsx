@@ -25,7 +25,7 @@ const Student = async () => {
   return (
     <main className="p-6 bg-gray-100">
       <div className=" flex flex-row">
-        <section className=" w-[74%] max-[1400px]:w-full h-full pr-5">
+        <section className=" w-full max-[1400px]:w-full h-full pr-5">
           {/* Student Card */}
           <StudentCard
             id={student.id}
@@ -66,7 +66,7 @@ const Student = async () => {
           */}
         </section>
 
-        <section className="w-[26%] max-[1400px]:hidden h-full">
+        <section className="max-w-[500px] max-[1400px]:hidden h-full">
           {/* Event Calander */}
           <article className="w-full flex flex-col  items-center">
             <EventCalander />

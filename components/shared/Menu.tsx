@@ -43,11 +43,10 @@ const Menu = ({ role }: { role: "teacher" | "student" }) => {
                   <Link
                     href={menu_item[role].link}
                     key={index}
-                    className={`menu-item-container ${
-                      pathname === menu_item[role].link
-                        ? "bg-white bg-opacity-10"
-                        : ""
-                    }`}
+                    className={`menu-item-container ${pathname === menu_item[role].link
+                      ? "bg-white bg-opacity-10"
+                      : ""
+                      }`}
                   >
                     <div className="text-white flex flex-row items-center gap-3 ">
                       <div>{menu_item.icon}</div>
@@ -81,13 +80,15 @@ const Menu = ({ role }: { role: "teacher" | "student" }) => {
           {/* Logout */}
           <button
             onClick={async () => {
-              const res = await fetch(`${backend_url}/auth/logout`, {
-                method: "GET",
-                credentials: "include",
-              });
-              const data = await res.json();
-
-              console.log("Logout", data.success);
+              const [res, res2] = await Promise.all([
+                fetch(`${backend_url}/auth/logout`, {
+                  method: "GET",
+                  credentials: "include",
+                }),
+                fetch("/api/removeCookie", {
+                  method: "GET",
+                }),
+              ]);
               window.location.href = "/";
             }}
             className="menu-item-container w-full"

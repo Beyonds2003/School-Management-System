@@ -22,14 +22,16 @@ const Admin = async () => {
   const userData = getUserData("teacher");
   const { data } = await getTodayTimelne(userData.id);
 
+  console.log(data)
+
   return (
     <main className="p-6 bg-gray-100">
       <h2 className="text-xl font-semibold">Overview</h2>
       <div className="flex flex-row">
-        <section className=" w-[74%] max-[1350px]:w-full h-full pr-5">
+        <section className=" w-full max-[1350px]:w-full h-full pr-5">
           {/* Total Card */}
           <Suspense fallback={<div className="p-6 bg-white shadow-gray-500 shadow-sm rounded-lg max-w-[280px]">Loading...</div>}>
-            <TotalCardContainer timelineLength={data.length} />
+            <TotalCardContainer timelineLength={data === undefined ? 0 : data.length} />
           </Suspense>
 
           {/* Timeline Table */}
@@ -39,7 +41,7 @@ const Admin = async () => {
           </article>
         </section>
 
-        <section className="w-[26%] max-[1350px]:hidden h-full">
+        <section className="max-w-[500px] max-[1350px]:hidden h-full">
           {/* Event Calander */}
           <article className=" flex flex-col  ">
             <EventCalander />

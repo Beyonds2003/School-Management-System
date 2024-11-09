@@ -16,7 +16,6 @@ import { Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { backend_url } from "@/lib/constant";
 import Loading_spinner from "@/components/ui/loading_spinner";
-import { useToast } from "@/hooks/use-toast";
 
 const StudentTeacherLoginForm = ({ role }: { role: "teacher" | "student" }) => {
   const router = useRouter();
@@ -40,7 +39,18 @@ const StudentTeacherLoginForm = ({ role }: { role: "teacher" | "student" }) => {
         credentials: "include",
       });
       const data = await res.json();
+
+      console.log(data)
       if (res.ok) {
+        // Set Cookie in next js api route
+        const response = await fetch("/api/setCookie", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ jwt: data.token.jwt }),
+        })
+
         // Redirect to the appropriate page based on role
         router.push(`/${role}`);
       } else {

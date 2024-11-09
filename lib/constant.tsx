@@ -6,11 +6,11 @@ import { BsTable } from "react-icons/bs";
 import { SlBookOpen, SlNotebook } from "react-icons/sl";
 import { BiMessageRoundedError } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
-import { BiLogOut } from "react-icons/bi";
 import { LuPenSquare } from "react-icons/lu";
 import { GrGroup } from "react-icons/gr";
 
 export const backend_url = "https://refreshing-commitment-production.up.railway.app";
+// export const backend_url = "http://localhost:3001";
 
 export interface MenuItemType {
   name: string;
