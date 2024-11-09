@@ -51,8 +51,9 @@ const StudentTeacherLoginForm = ({ role }: { role: "teacher" | "student" }) => {
           body: JSON.stringify({ jwt: data.token.jwt }),
         })
 
+        console.log(await response.json())
         // Redirect to the appropriate page based on role
-        router.push(`/${role}`);
+        // router.push(`/${role}`);
       } else {
         // Handle error (e.g., unauthorized, incorrect password)
         setError(data.message || "Login failed. Please try again.");
