@@ -10,7 +10,7 @@ import { getEventResponse } from "@/lib/responseType";
 const getEvents = async (): Promise<getEventResponse> => {
   const res = await fetch(`${backend_url}/event?page=${1}&limit=${5}`, {
     next: { tags: ["events"] },
-    headers: headers(),
+    headers: new Headers(headers()),
   });
   const data = await res.json();
   return data;
