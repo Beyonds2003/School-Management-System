@@ -22,8 +22,6 @@ const Admin = async () => {
   const userData = getUserData("teacher");
   const { data } = await getTodayTimelne(userData.id);
 
-  console.log(data)
-
   return (
     <main className="p-6 bg-gray-100">
       <h2 className="text-xl font-semibold">Overview</h2>

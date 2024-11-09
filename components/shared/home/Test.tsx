@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import { redirect } from "next/navigation";
 
-const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY as string;
+const JWT_SECRET_KEY = process.env.NEXT_PUBLIC_JWT_SECRET_KEY as string;
 
 export const getUserRole = (): string | null => {
   const token = cookies().get("jwt");
